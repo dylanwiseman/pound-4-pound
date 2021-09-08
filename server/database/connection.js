@@ -10,14 +10,13 @@ async function listDatabases(client) {
 
 //CREATE:
 
-async function createListing(client, newListing) {
+async function createUser(newUser) {
   const result = await client
-    .db("sample_airbnb")
-    .collection("listingsAndReviews")
-    .insertOne(newListing);
-  console.log(
-    `New listing created with the following id: ${result.insertedId}`
-  );
+    .db("pound4pound")
+    .collection("users")
+    .insertOne(newUser);
+  console.log(`New user created with the following id: ${result.insertedId}`);
+  return result;
 }
 
 async function createMultipleListings(client, newListings) {
@@ -137,4 +136,4 @@ async function connect() {
   }
 }
 
-module.exports = { connect, findOneUser };
+module.exports = { connect, findOneUser, createUser };

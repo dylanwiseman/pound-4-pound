@@ -1,22 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import LeaderBoard from "./LeaderBoard";
+// import axios from "axios";
 import Login from "./Login";
-import useToken from "../useToken";
+// import { getAuth, onAuthStateChanged } from "firebase/auth";
+import useToken from "./useToken";
 
-function App() {
+export default function App() {
   const { token, setToken } = useToken();
+  // const [user, setUser] = useState(undefined);
 
-  // const [userData, setUserData] = useState({});
+  // const observeAuth = () => {
+  //   const auth = getAuth();
+  //   onAuthStateChanged(auth, (user) => {
+  //     console.log("the user is being set ", user);
+  //     setUser(user);
+  //   });
+  // };
 
   // useEffect(() => {
-  //   async function getUser() {
-  //     const { data } = await axios.get("/api");
-  //     setUserData(data);
-  //   }
   //   try {
-  //     getUser();
+  //     observeAuth();
   //   } catch (error) {
   //     console.log(error);
   //   }
@@ -31,10 +36,10 @@ function App() {
       <h1>Pound4Pound</h1>
       <BrowserRouter>
         <Switch>
-          <Route path="/home">
+          <Route exact path="/home">
             <Home />
           </Route>
-          <Route path="/leaderboard">
+          <Route exact path="/leaderboard">
             <LeaderBoard />
           </Route>
         </Switch>
@@ -43,4 +48,7 @@ function App() {
   );
 }
 
-export default App;
+// const PrivateRoute = (props) => {
+//   return <Route {...props}>{props.user ? props.children : <Login />}</Route>;
+// };
+// export default App;
