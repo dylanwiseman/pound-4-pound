@@ -10,6 +10,12 @@ app.use(express.json());
 const PORT = process.env.PORT || 4004;
 database.connect();
 
+// GET LEADERBOARD:
+app.get("/api/leaderboard", async (req, res) => {
+  const result = await database.findUsers();
+  res.send(result);
+});
+
 // LOGIN:
 app.post("/api/auth/login", async (req, res) => {
   console.log(req.body);

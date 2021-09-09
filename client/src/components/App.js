@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { HashRouter, Switch, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { Switch, Route, Link } from "react-router-dom";
 import Home from "./Home";
 import LeaderBoard from "./LeaderBoard";
 import axios from "axios";
@@ -74,23 +74,23 @@ export default function App() {
     <div className="App">
       <h1>Pound4Pound</h1>
       <h3>{username ? username : "no user"}</h3>
+      <Link to="/home">Personal</Link>
+      <Link to="/leaderboard">LeaderBoard</Link>
       <Logout />
-      <HashRouter>
-        <Switch>
-          <Route path="/home">
-            <Home
-              currentWeight={currentWeight}
-              goalWeight={goalWeight}
-              benchPR={benchPR}
-              squatPR={squatPR}
-              deadliftPR={deadliftPR}
-            />
-          </Route>
-          <Route path="/leaderboard">
-            <LeaderBoard />
-          </Route>
-        </Switch>
-      </HashRouter>
+      <Switch>
+        <Route exact path="/home">
+          <Home
+            currentWeight={currentWeight}
+            goalWeight={goalWeight}
+            benchPR={benchPR}
+            squatPR={squatPR}
+            deadliftPR={deadliftPR}
+          />
+        </Route>
+        <Route exact path="/leaderboard">
+          <LeaderBoard />
+        </Route>
+      </Switch>
     </div>
   );
 }
