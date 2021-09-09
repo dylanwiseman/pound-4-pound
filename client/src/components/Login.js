@@ -1,26 +1,20 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import PropTypes from "prop-types";
+// import axios from "axios";
+// import { withRouter, useHistory } from "react-router";
 
-async function loginUser(credentials) {
-  return fetch("http://localhost:4004/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(credentials),
-  }).then((data) => data.json());
-}
-
-export default function Login({ setToken }) {
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
-
+export default function Login({
+  setToken,
+  loginUser,
+  setUserName,
+  setPassword,
+  username,
+  password,
+}) {
+  // Submit Handler calls loginUser and setToken from App
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = await loginUser({
-      username,
-      password,
-    });
+    const token = await loginUser(username, password);
     setToken(token);
   };
 
@@ -50,6 +44,28 @@ export default function Login({ setToken }) {
 Login.propTypes = {
   setToken: PropTypes.func.isRequired,
 };
+
+//   const [username, setUserName] = useState();
+//   const [password, setPassword] = useState();
+
+//   let history = useHistory();
+//   const location = { pathname: "/home" };
+
+//   async function loginUser() {
+//     console.log(username, password);
+//     // need a username and password to be sent on body
+//     const credentials = { username: username, password: password };
+//     const { data } = await axios.post(
+//       "http://localhost:4004/api/auth/login",
+//       credentials
+//     );
+//     // update the route to reroute user
+//     history.push(location);
+//     console.log(window.history);
+//     // set auth token:
+//     console.log(data);
+//     return data;
+//   }
 
 // import React, { useState } from "react";
 // import {

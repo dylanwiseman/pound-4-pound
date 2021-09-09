@@ -1,87 +1,93 @@
 import React, { useState } from "react";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { useHistory } from "react-router-dom";
+import axios from "axios";
 
-export default function Login() {
-  const history = useHistory();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function Signup({
+  loginUser,
+  setUserName,
+  setPassword,
+  setToken,
+}) {
+  //This state is used just to create the new user, it's different from the state used in App:
+  const [newUsername, setNewUserName] = useState("");
+  const [currentWeight, setCurrentWeight] = useState("");
+  const [goalWeight, setGoalWeight] = useState("");
+  const [benchPR, setBenchPR] = useState("");
+  const [squatPR, setSquatPR] = useState("");
+  const [deadliftPR, setDeadliftPR] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [username, setUsername] = useState("");
-  const [currentWeight, setCurrentWeight] = useState(0);
-  const [goalWeight, setGoalWeight] = useState(0);
-  const [benchPR, setBenchPR] = useState(0);
-  const [squatPR, setSquatPR] = useState(0);
-  const [deadliftPR, setDeadliftPR] = useState(0);
 
-  const register = async () => {
-    try {
-      console.log("hellow");
-      const auth = getAuth();
-      console.log("second log");
-      const userCredentials = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      console.log(userCredentials);
-    } catch (error) {
-      alert(error.message);
+  async function register() {
+    if (newPassword !== passwordConfirm) {
+      alert("Passwords do not match");
+      return;
     }
-  };
+    console.log("inside register function");
 
-  const login = async () => {
-    try {
-      const auth = getAuth();
-      const userCredentials = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      console.log(userCredentials);
-      history.push("/home");
-    } catch (error) {
-      alert(error.message);
-    }
+    // the states are strings, we have to turn them into numbers before we send them to the database:
+    let currentWeightNum = parseInt(currentWeight);
+    let goalWeightNum = parseInt(goalWeight);
+    let benchPRNum = parseInt(benchPR);
+    let squatPRNum = parseInt(squatPR);
+    let deadliftPRNum = parseInt(deadliftPR);
+
+    //making a post request to add the user:
+    const { data } = await axios.post(
+      "http://localhost:4004/api/auth/register",
+      {
+        newUsername,
+        newPassword,
+        currentWeightNum,
+        goalWeightNum,
+        benchPRNum,
+        squatPRNum,
+        deadliftPRNum,
+      }
+    );
+    console.log(
+      newUsername,
+      newPassword,
+      currentWeight,
+      goalWeight,
+      benchPR,
+      squatPR,
+      deadliftPR
+    );
+    console.log(data);
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("clicked");
+    await register();
+    console.log(newUsername);
+    await setUserName(newUsername);
+    console.log(newPassword);
+    await setPassword(newPassword);
+
+    //call loginUser with the username and password we just created and set the token:
+    const token = await loginUser(newUsername, newPassword);
+    setToken(token);
   };
 
   return (
     <div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          register();
-          login();
-        }}
-      >
-        <label htmlFor="email">Email Address: </label>
-        <input
-          type="text"
-          id="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
+      <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username: </label>
         <input
           type="text"
           id="username"
-          value={username}
+          value={newUsername}
           onChange={(e) => {
-            setEmail(e.target.value);
+            setNewUserName(e.target.value);
           }}
         />
         <label htmlFor="password">Password: </label>
         <input
           type="password"
-          value={password}
+          value={newPassword}
           onChange={(e) => {
-            setPassword(e.target.value);
+            setNewPassword(e.target.value);
           }}
         />
         <label htmlFor="passwordConfirm">Re-enter Password: </label>
@@ -89,7 +95,47 @@ export default function Login() {
           type="password"
           value={passwordConfirm}
           onChange={(e) => {
-            setPassword(e.target.value);
+            setPasswordConfirm(e.target.value);
+          }}
+        />
+        <label htmlFor="currentWeight">Current Body Weight: </label>
+        <input
+          type="text"
+          value={currentWeight}
+          onChange={(e) => {
+            setCurrentWeight(e.target.value);
+          }}
+        />
+        <label htmlFor="goalWeight">Goal Body Weight: </label>
+        <input
+          type="text"
+          value={goalWeight}
+          onChange={(e) => {
+            setGoalWeight(e.target.value);
+          }}
+        />
+        <label htmlFor="benchPR">Bench PR: </label>
+        <input
+          type="text"
+          value={benchPR}
+          onChange={(e) => {
+            setBenchPR(e.target.value);
+          }}
+        />
+        <label htmlFor="squatPR">Squat PR: </label>
+        <input
+          type="text"
+          value={squatPR}
+          onChange={(e) => {
+            setSquatPR(e.target.value);
+          }}
+        />
+        <label htmlFor="deadliftPR">Deadlift PR: </label>
+        <input
+          type="text"
+          value={deadliftPR}
+          onChange={(e) => {
+            setDeadliftPR(e.target.value);
           }}
         />
         <input type="submit" />
@@ -97,3 +143,61 @@ export default function Login() {
     </div>
   );
 }
+
+// setUserName,
+// setPassword,
+// setBenchPR,
+// setSquatPR,
+// setDeadliftPR,
+// setGoalWeight,
+// setCurrentWeight,
+
+// import React, { useState } from "react";
+// import {
+//   getAuth,
+//   createUserWithEmailAndPassword,
+//   signInWithEmailAndPassword,
+// } from "firebase/auth";
+// import { useHistory } from "react-router-dom";
+
+//   const history = useHistory();
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [passwordConfirm, setPasswordConfirm] = useState("");
+//   const [username, setUsername] = useState("");
+//   const [currentWeight, setCurrentWeight] = useState(0);
+//   const [goalWeight, setGoalWeight] = useState(0);
+//   const [benchPR, setBenchPR] = useState(0);
+//   const [squatPR, setSquatPR] = useState(0);
+//   const [deadliftPR, setDeadliftPR] = useState(0);
+
+//   const register = async () => {
+//     try {
+//       console.log("hellow");
+//       const auth = getAuth();
+//       console.log("second log");
+//       const userCredentials = await createUserWithEmailAndPassword(
+//         auth,
+//         email,
+//         password
+//       );
+//       console.log(userCredentials);
+//     } catch (error) {
+//       alert(error.message);
+//     }
+//   };
+
+//   const login = async () => {
+//     try {
+//       const auth = getAuth();
+//       const userCredentials = await signInWithEmailAndPassword(
+//         auth,
+//         email,
+//         password
+//       );
+//       console.log(userCredentials);
+//       history.push("/home");
+//     } catch (error) {
+//       alert(error.message);
+//     }
+//   };

@@ -1,3 +1,5 @@
+// This file creates the MongoClient used to connect to the database and declares the actual CRUD functions that connect to the database
+
 const { MongoClient } = require("mongodb");
 const URI = require("./config");
 const client = new MongoClient(URI);
@@ -10,6 +12,7 @@ async function listDatabases(client) {
 
 //CREATE:
 
+//client is defined above. We find the database, then the collection, then insert the user object we created and send back result:
 async function createUser(newUser) {
   const result = await client
     .db("pound4pound")
@@ -32,6 +35,7 @@ async function createMultipleListings(client, newListings) {
 
 // READ:
 
+//finding a user by username. If there is no user, we send back a console log that says so:
 async function findOneUser(username) {
   const result = await client
     .db("pound4pound")
@@ -131,6 +135,7 @@ async function deleteListingByName(client, nameOfListing) {
 async function connect() {
   try {
     await client.connect();
+    console.log("db connected");
   } catch (error) {
     throw new Error(error);
   }
