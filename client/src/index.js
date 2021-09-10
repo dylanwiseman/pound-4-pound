@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import App from "./components/App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { initializeApp } from "firebase/app";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCGzC6EGPmje0RJmW3601tteIEHTOQ3mok",
@@ -17,9 +19,11 @@ initializeApp(firebaseConfig);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

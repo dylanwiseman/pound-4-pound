@@ -4,7 +4,6 @@ import Home from "./Home";
 import LeaderBoard from "./LeaderBoard";
 import axios from "axios";
 import Login from "./Login";
-// import { getAuth, onAuthStateChanged } from "firebase/auth";
 import useToken from "./useToken";
 import { useHistory } from "react-router";
 import Logout from "./Logout";
@@ -49,6 +48,16 @@ export default function App() {
     return data;
   }
 
+  async function updateUser(updatedUser) {
+    console.log("updating user...");
+    const { data } = await axios.put("/api/user/update", {
+      username: username,
+      updatedUser,
+    });
+    console.log(data);
+    return data;
+  }
+
   if (!token) {
     return (
       <>
@@ -80,11 +89,13 @@ export default function App() {
       <Switch>
         <Route exact path="/home">
           <Home
+            updateUser={updateUser}
             currentWeight={currentWeight}
             goalWeight={goalWeight}
             benchPR={benchPR}
             squatPR={squatPR}
             deadliftPR={deadliftPR}
+            setBenchPR={setBenchPR}
           />
         </Route>
         <Route exact path="/leaderboard">

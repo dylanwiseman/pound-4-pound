@@ -10,6 +10,15 @@ app.use(express.json());
 const PORT = process.env.PORT || 4004;
 database.connect();
 
+// UPDATE user stats:
+app.put("/api/user/update", async (req, res) => {
+  const result = await database.updateUser(
+    req.body.username,
+    req.body.updatedUser
+  );
+  res.send(result);
+});
+
 // GET LEADERBOARD:
 app.get("/api/leaderboard", async (req, res) => {
   const result = await database.findUsers();

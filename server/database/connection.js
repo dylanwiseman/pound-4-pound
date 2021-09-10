@@ -61,13 +61,14 @@ async function findUsers() {
 
 //UPDTATE:
 
-async function updateListingByName(client, nameOfListing, updatedListing) {
+async function updateUser(nameOfUser, updatedUser) {
   const result = await client
-    .db("sample_airbnb")
-    .collection("listingsAndReviews")
-    .updateOne({ name: nameOfListing }, { $set: updatedListing });
+    .db("pound4pound")
+    .collection("users")
+    .updateOne({ username: nameOfUser }, { $set: updatedUser });
   console.log(`${result.matchedCount} document(s) matched the query criteria.`);
   console.log(`${result.modifiedCount} document(s) was/were updated.`);
+  return result;
 }
 async function upsertListingByName(client, nameOfListing, updatedListing) {
   const result = await client
@@ -109,4 +110,4 @@ async function connect() {
   }
 }
 
-module.exports = { connect, findOneUser, createUser, findUsers };
+module.exports = { connect, findOneUser, createUser, findUsers, updateUser };
