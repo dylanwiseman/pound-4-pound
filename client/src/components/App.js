@@ -8,16 +8,19 @@ import useToken from "./useToken";
 import { useHistory } from "react-router";
 import Logout from "./Logout";
 import Signup from "./Signup";
+import { useDispatch } from "react-redux";
 
 export default function App() {
   const { token, setToken } = useToken();
   const [username, setUserName] = useState();
-  const [currentWeight, setCurrentWeight] = useState();
-  const [goalWeight, setGoalWeight] = useState();
-  const [benchPR, setBenchPR] = useState();
-  const [squatPR, setSquatPR] = useState();
-  const [deadliftPR, setDeadliftPR] = useState();
+  // const [currentWeight, setCurrentWeight] = useState();
+  // const [goalWeight, setGoalWeight] = useState();
+  // const [benchPR, setBenchPR] = useState();
+  // const [squatPR, setSquatPR] = useState();
+  // const [deadliftPR, setDeadliftPR] = useState();
   const [password, setPassword] = useState();
+
+  const dispatch = useDispatch();
 
   //useHistory lets us push to the home page after logging in:
   let history = useHistory();
@@ -31,29 +34,21 @@ export default function App() {
       "http://localhost:4004/api/auth/login",
       credentials
     );
+    console.log(data.result);
+    dispatch({ type: "SET_USER", value: data.result });
     // update the route to reroute user
     history.push(location);
     console.log(window.history);
     // set user stats:
-    let { currentWeight, goalWeight, benchPR, squatPR, deadliftPR } =
-      data.result;
-    await setCurrentWeight(currentWeight);
-    await setGoalWeight(goalWeight);
-    await setBenchPR(benchPR);
-    await setSquatPR(squatPR);
-    await setDeadliftPR(deadliftPR);
-    await console.log(currentWeight);
+    // let { currentWeight, goalWeight, benchPR, squatPR, deadliftPR } =
+    //   data.result;
+    // await setCurrentWeight(currentWeight);
+    // await setGoalWeight(goalWeight);
+    // await setBenchPR(benchPR);
+    // await setSquatPR(squatPR);
+    // await setDeadliftPR(deadliftPR);
+    // await console.log(currentWeight);
     // set auth token:
-    console.log(data);
-    return data;
-  }
-
-  async function updateUser(updatedUser) {
-    console.log("updating user...");
-    const { data } = await axios.put("/api/user/update", {
-      username: username,
-      updatedUser,
-    });
     console.log(data);
     return data;
   }
@@ -88,15 +83,7 @@ export default function App() {
       <Logout />
       <Switch>
         <Route exact path="/home">
-          <Home
-            updateUser={updateUser}
-            currentWeight={currentWeight}
-            goalWeight={goalWeight}
-            benchPR={benchPR}
-            squatPR={squatPR}
-            deadliftPR={deadliftPR}
-            setBenchPR={setBenchPR}
-          />
+          <Home />
         </Route>
         <Route exact path="/leaderboard">
           <LeaderBoard />

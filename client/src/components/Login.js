@@ -2,11 +2,12 @@
 import PropTypes from "prop-types";
 // import axios from "axios";
 // import { withRouter, useHistory } from "react-router";
+// import { useSelector, useDispatch } from "react-redux";
 
 export default function Login({
   setToken,
-  loginUser,
   setUserName,
+  loginUser,
   setPassword,
   username,
   password,
@@ -44,6 +45,30 @@ export default function Login({
 Login.propTypes = {
   setToken: PropTypes.func.isRequired,
 };
+
+// const user = useSelector((state) => state.user)
+
+//     const dispatch = useDispatch()
+
+//   let history = useHistory();
+//   const location = { pathname: "/home" };
+
+//   async function loginUser(username, password) {
+//     console.log("Loggin in: ", username, password);
+//     // need a username and password to be sent on body
+//     const credentials = { username: username, password: password };
+//     const { data } = await axios.post(
+//       "http://localhost:4004/api/auth/login",
+//       credentials
+//     );
+//     dispatch({type: "SET_USER", value: data})
+//     // update the route to reroute user
+//     history.push(location);
+//     console.log(window.history);
+//     // set auth token:
+//     console.log(data);
+//     setToken(data);
+//   }
 
 //   const [username, setUserName] = useState();
 //   const [password, setPassword] = useState();
