@@ -8,8 +8,23 @@ export default function LeaderBoard() {
   useEffect(() => {
     const getLeaderboard = async () => {
       const { data } = await axios.get("/api/leaderboard");
-      setUserData(data);
       setIsLoading(false);
+
+      const leaders = data.map((user) => {
+        let strengthRating = Math.ceil(
+          ((parseInt(user.benchPR) +
+            parseInt(user.squatPR) +
+            parseInt(user.deadliftPR)) /
+            3 /
+            parseInt(user.currentWeight)) *
+            10000
+        );
+        return { ...user, strengthRating };
+      });
+      leaders.sort((a, b) => {
+        return (a.strengthRating - b.strengthRating) * -1;
+      });
+      setUserData(leaders);
     };
     try {
       getLeaderboard();
@@ -27,7 +42,11 @@ export default function LeaderBoard() {
       Leaderboard
       <ol>
         {userData.map((user, index) => {
-          return <li key={index}>{user.username}</li>;
+          return (
+            <li key={index}>
+              {user.username} , {user.strengthRating}
+            </li>
+          );
         })}
       </ol>
     </div>

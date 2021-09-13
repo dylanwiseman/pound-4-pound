@@ -8,8 +8,10 @@ export default function userReducer(state = initialState, action) {
       };
     }
     case "UPDATE_USER": {
+      console.log("user as recieved by reducer: ", state);
+      console.log("action.value received by reducer: ", action.value);
       return {
-        ...state.user,
+        ...state,
         ...action.value,
       };
     }

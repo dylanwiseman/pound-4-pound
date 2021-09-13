@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 import Logout from "./Logout";
 import Signup from "./Signup";
 import { useDispatch } from "react-redux";
+import "../app.css";
 
 export default function App() {
   const { token, setToken } = useToken();
@@ -76,11 +77,26 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Pound4Pound</h1>
-      <h3>{username ? username : "no user"}</h3>
-      <Link to="/home">Personal</Link>
-      <Link to="/leaderboard">LeaderBoard</Link>
-      <Logout />
+      <header>
+        <div className="left-header">
+          <h1>
+            <span className="h1one">Pound</span>4
+            <span className="h1two">Pound</span>
+          </h1>
+          <h3 className="welcome">
+            Welcome, {username ? username : "no user"}
+          </h3>
+        </div>
+        <div className="right-header">
+          <Link to="/home" className="navlink">
+            Personal
+          </Link>
+          <Link to="/leaderboard" className="navlink">
+            LeaderBoard
+          </Link>
+          <Logout />
+        </div>
+      </header>
       <Switch>
         <Route exact path="/home">
           <Home />
