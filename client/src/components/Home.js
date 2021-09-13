@@ -30,7 +30,6 @@ export default function Home() {
 
     return data;
   }
-  //y
 
   const handleChangeBench = (e) => {
     setNewBench(e.target.value);
