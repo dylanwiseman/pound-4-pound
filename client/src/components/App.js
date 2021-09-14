@@ -14,11 +14,6 @@ import "../app.css";
 export default function App() {
   const { token, setToken } = useToken();
   const [username, setUserName] = useState();
-  // const [currentWeight, setCurrentWeight] = useState();
-  // const [goalWeight, setGoalWeight] = useState();
-  // const [benchPR, setBenchPR] = useState();
-  // const [squatPR, setSquatPR] = useState();
-  // const [deadliftPR, setDeadliftPR] = useState();
   const [password, setPassword] = useState();
 
   const dispatch = useDispatch();

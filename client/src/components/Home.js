@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+import WeightChart from "./WeightChart";
 
 export default function Home() {
-  useSelector((state) => console.log(state));
+  // useSelector((state) => console.log(state));
   const dispatch = useDispatch();
 
   const { currentWeight, goalWeight, benchPR, squatPR, deadliftPR, username } =
@@ -56,7 +57,7 @@ export default function Home() {
       ((parseInt(benchPR) + parseInt(squatPR) + parseInt(deadliftPR)) /
         3 /
         parseInt(currentWeight)) *
-        10000
+        100
     );
     setStrengthRating(strengthRating);
   }, [currentWeight, benchPR, squatPR, deadliftPR]);
@@ -67,7 +68,8 @@ export default function Home() {
         <div className="card-header">
           <h2>Strength Stats</h2>
           <h3>
-            <span className="lvl">lvl:</span> {strengthRating}
+            <span className="lvl">lvl:</span>{" "}
+            <span className="ratingColor">{strengthRating}</span>
           </h3>
         </div>
         <h2>
@@ -160,6 +162,7 @@ export default function Home() {
           )}
         </div>
       </div>
+      <WeightChart />
     </div>
   );
 }

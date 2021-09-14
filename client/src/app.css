@@ -100,11 +100,21 @@ h1 {
 }
 
 .stats-card {
-  flex-shrink: 0.5;
+  flex: 1;
   border-radius: 3px;
   border: 1px solid black;
   padding-bottom: 1em;
   box-shadow: 0.1em 0.1em 0em black;
+  margin: 1em;
+}
+
+.chart-card {
+  flex: 1;
+  border-radius: 3px;
+  border: 1px solid black;
+  padding-bottom: 1em;
+  box-shadow: 0.1em 0.1em 0em black;
+  margin: 1em;
 }
 
 .card-header {
@@ -133,4 +143,9 @@ h3 {
 
 .lvl {
   font-weight: 300;
+}
+
+.ratingColor {
+  color: #e71d36;
+  text-shadow: 0.1em 0.1em 0em black;
 }

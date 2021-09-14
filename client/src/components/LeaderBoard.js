@@ -17,7 +17,7 @@ export default function LeaderBoard() {
             parseInt(user.deadliftPR)) /
             3 /
             parseInt(user.currentWeight)) *
-            10000
+            100
         );
         return { ...user, strengthRating };
       });
