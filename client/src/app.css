@@ -101,7 +101,17 @@ h1 {
 
 .stats-card {
   flex-shrink: 0.5;
-  border: solid 1px black;
+  border-radius: 3px;
+  border: 1px solid black;
+  padding-bottom: 1em;
+  box-shadow: 0.1em 0.1em 0em black;
+}
+
+.card-header {
+  background-color: #66999b;
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
 }
 
 h2 {
@@ -110,4 +120,17 @@ h2 {
   font-weight: 800;
 
   font-style: normal;
+  flex-grow: 2;
+}
+
+h3 {
+  font-family: sporty-pro, sans-serif;
+
+  font-weight: 700;
+
+  font-style: normal;
+}
+
+.lvl {
+  font-weight: 300;
 }

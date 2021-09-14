@@ -64,8 +64,11 @@ export default function Home() {
   return (
     <div className="container">
       <div className="stats-card">
-        <div className="overall">
-          <h2>Strength Rating: {strengthRating}</h2>
+        <div className="card-header">
+          <h2>Strength Stats</h2>
+          <h3>
+            <span className="lvl">lvl:</span> {strengthRating}
+          </h3>
         </div>
         <h2>
           current weight: {currentWeight} lbs / {goalWeight} lbs
