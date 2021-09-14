@@ -7,12 +7,11 @@ export default function WeightChart() {
   const { daily } = useSelector((state) => state.user);
   console.log(daily);
 
-  // useEffect(() => {
-  //   const dateArray = !daily
-  //     ? [1, 2, 3]
-  //     : daily.map((day) => day.date.substr(5, 5));
-  //   return dateArray;
-  // }, [daily]);
+  const dateArray = daily.map((day) => day.date);
+
+  const readableDateArray = !daily
+    ? [1, 2, 3]
+    : daily.map((day) => day.date.substr(5, 5));
 
   if (!daily) return <div>load data</div>;
 
@@ -23,8 +22,15 @@ export default function WeightChart() {
       </div>
       <DailyForm />
       <VictoryChart theme={VictoryTheme.material}>
-        <VictoryAxis tickValues={[...daily]} />
-        <VictoryAxis dependentAxis />
+        <VictoryAxis
+          tickValues={[...dateArray]}
+          tickFormat={[...readableDateArray]}
+          // tickValues={[
+          //   1630510470000, 1633102470000, 1635780870000, 1638376470000,
+          // ]}
+          // tickFormat={["Sep", "Oct", "Nov", "Dec"]}
+        />
+        <VictoryAxis dependentAxis tickValues={[0, 50, 100, 150, 200, 250]} />
         <VictoryLine data={daily} x="date" y="weight" />
       </VictoryChart>
     </div>

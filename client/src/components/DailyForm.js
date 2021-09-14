@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function DailyForm() {
   const dispatch = useDispatch();
-  const [date, setDate] = useState();
+  const [date, setDate] = useState("");
   const [dailyWeight, setDailyWeight] = useState(0);
 
   const { username, daily } = useSelector((state) => state.user);
@@ -18,11 +18,20 @@ export default function DailyForm() {
       typeof dailyWeight,
       dailyWeight
     );
-    let sortedDaily = [...daily, { date: date, weight: +dailyWeight }].sort(
-      (a, b) => {
-        return (a.date - b.date) * -1;
+    let unixDaily = [...daily, { date: date, weight: +dailyWeight }].map(
+      (day) => {
+        return { date: new Date(day.date).getTime(), weight: day.weight };
       }
     );
+    console.log(unixDaily);
+    let sortedDaily = unixDaily
+      .sort((a, b) => {
+        return a.date - b.date;
+      })
+      .map((day) => {
+        return { date: new Date(day.date), weight: day.weight };
+      });
+    console.log("sorted array of dates:", sortedDaily);
     let updatedUser = {
       daily: sortedDaily,
     };
@@ -31,9 +40,14 @@ export default function DailyForm() {
       updatedUser,
     });
     console.log("data returned from put call: ", data);
-    // dispatch({
-    //     type: ""
-    // })
+    console.log("sortedDaily: ", sortedDaily);
+    dispatch({
+      type: "UPDATE_USER",
+      value: {
+        daily: sortedDaily,
+      },
+    });
+    console.log("daily: ", daily);
   };
 
   return (
