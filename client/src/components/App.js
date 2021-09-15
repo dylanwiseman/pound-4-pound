@@ -31,7 +31,13 @@ export default function App() {
       credentials
     );
     console.log(data.result);
-    dispatch({ type: "SET_USER", value: data.result });
+    const dateObjects = data.result.daily.map((day) => {
+      return { date: new Date(day.date), weight: day.weight };
+    });
+    dispatch({
+      type: "SET_USER",
+      value: { ...data.result, daily: dateObjects },
+    });
     // update the route to reroute user
     history.push(location);
     console.log(window.history);

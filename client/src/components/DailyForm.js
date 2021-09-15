@@ -11,10 +11,10 @@ export default function DailyForm() {
 
   const addDailyStats = async () => {
     console.log(
-      "date: ",
+      "date input to add: ",
       date,
       typeof date,
-      " weight: ",
+      " weight input to add: ",
       typeof dailyWeight,
       dailyWeight
     );
@@ -23,7 +23,7 @@ export default function DailyForm() {
         return { date: new Date(day.date).getTime(), weight: day.weight };
       }
     );
-    console.log(unixDaily);
+    console.log("unix array of dates: ", unixDaily);
     let sortedDaily = unixDaily
       .sort((a, b) => {
         return a.date - b.date;
@@ -35,19 +35,20 @@ export default function DailyForm() {
     let updatedUser = {
       daily: sortedDaily,
     };
+    console.log("updatedUser being sent to call: ", updatedUser);
     const { data } = await axios.put("/api/user/update", {
       username: username,
       updatedUser,
     });
     console.log("data returned from put call: ", data);
-    console.log("sortedDaily: ", sortedDaily);
-    dispatch({
+    console.log("sortedDaily after the call is sent: ", sortedDaily);
+    await dispatch({
       type: "UPDATE_USER",
       value: {
         daily: sortedDaily,
       },
     });
-    console.log("daily: ", daily);
+    console.log("daily after the dispatch: ", daily);
   };
 
   return (

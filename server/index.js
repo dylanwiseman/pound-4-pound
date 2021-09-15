@@ -12,11 +12,15 @@ database.connect();
 
 // UPDATE user stats:
 app.put("/api/user/update", async (req, res) => {
+  //   const dateObjects = req.body.updatedUser.daily.map((day) => {
+  //     return { date: new Date(day.date), weight: day.weight };
+  //   });
+  //   console.log("date converted to date objects: ", dateObjects);
   const result = await database.updateUser(
     req.body.username,
     req.body.updatedUser
   );
-  res.send(result);
+  res.send("result");
 });
 
 // GET LEADERBOARD:

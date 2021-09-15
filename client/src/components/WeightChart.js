@@ -5,15 +5,14 @@ import DailyForm from "./DailyForm";
 
 export default function WeightChart() {
   const { daily } = useSelector((state) => state.user);
-  console.log(daily);
+  console.log("daily array from weightChart: ", daily);
+  if (!daily) return <div>load data</div>;
 
   const dateArray = daily.map((day) => day.date);
 
   const readableDateArray = !daily
     ? [1, 2, 3]
-    : daily.map((day) => day.date.substr(5, 5));
-
-  if (!daily) return <div>load data</div>;
+    : daily.map((day) => console.log(typeof day.date));
 
   return (
     <div className="chart-card">
