@@ -20,6 +20,8 @@ export default function Home() {
   const [newDeadlift, setNewDeadlift] = useState(+deadliftPR);
   const [strengthRating, setStrengthRating] = useState(0);
   const [benchGoal, setBenchGoal] = useState(currentWeight);
+  const [squatGoal, setSquatGoal] = useState(currentWeight);
+  const [deadliftGoal, setDeadliftGoal] = useState(currentWeight);
 
   async function updateUser(updatedUser) {
     console.log(
@@ -63,25 +65,19 @@ export default function Home() {
         100
     );
     setStrengthRating(strengthRating);
-    if (benchPR >= 1.6 * currentWeight) {
-      setBenchGoal(currentWeight * 1.7);
-    } else if (benchPR >= 1.5 * currentWeight) {
-      setBenchGoal(currentWeight * 1.6);
-    } else if (benchPR >= 1.4 * currentWeight) {
-      setBenchGoal(currentWeight * 1.5);
-    } else if (benchPR >= 1.3 * currentWeight) {
-      setBenchGoal(currentWeight * 1.4);
-    } else if (benchPR >= 1.2 * currentWeight) {
-      setBenchGoal(currentWeight * 1.3);
-    } else if (benchPR >= 1.1 * currentWeight) {
-      setBenchGoal(currentWeight * 1.2);
-    } else if (benchPR >= 1.0 * currentWeight) {
-      setBenchGoal(currentWeight * 1.1);
-    } else if (benchPR < currentWeight) {
-      setBenchGoal(currentWeight);
-    } else {
-      setBenchGoal(currentWeight * 2);
-    }
+
+    const benchMultiplyer =
+      Math.floor((benchPR / currentWeight) * 10) / 10 + 0.1;
+    const squatMultiplyer =
+      Math.floor((squatPR / currentWeight) * 10) / 10 + 0.1;
+    console.log("squatmulitplyer: ", squatMultiplyer);
+    const deadliftMultiplyer =
+      Math.floor((deadliftPR / currentWeight) * 10) / 10 + 0.1;
+    console.log(benchMultiplyer);
+
+    setBenchGoal(benchMultiplyer * currentWeight);
+    setSquatGoal(squatMultiplyer * currentWeight);
+    setDeadliftGoal(deadliftMultiplyer * currentWeight);
   }, [currentWeight, benchPR, squatPR, deadliftPR]);
 
   return (
@@ -99,7 +95,7 @@ export default function Home() {
             current weight: <span className="heavy">{currentWeight}</span> lbs
           </h4>
           <DailyForm />
-          <div>
+          <div className="stat-div top">
             <h4>
               Bench PR: <span className="heavy">{benchPR}</span> lbs / goal:{" "}
               {Math.ceil(benchGoal)}
@@ -145,23 +141,41 @@ export default function Home() {
                   value={newBench}
                   onChange={handleChangeBench}
                 />
-                <input type="submit" value="Update" />
+                <input
+                  type="submit"
+                  value="Update"
+                  className="submit-daily-weight"
+                />
               </form>
             )}
           </div>
-          <div>
+          <div className="stat-div">
             <h4>
-              Squat PR: <span className="heavy">{squatPR}</span> lbs
+              Squat PR: <span className="heavy">{squatPR}</span> lbs / goal:{" "}
+              {Math.ceil(squatGoal)}
             </h4>
-            <button
-              onClick={() => {
-                setSquatToggle(!squatToggle);
-              }}
-            >
-              New PR
-            </button>
+            <div className="progress-container">
+              <div className="progress-bar">
+                <div
+                  className="current-progress"
+                  style={{ width: `${(squatPR / (currentWeight * 2)) * 100}%` }}
+                >
+                  <p>{(squatPR / currentWeight).toFixed(2)}x</p>
+                </div>
+              </div>
+              <p>2x</p>
+              <button
+                className="new-pr-button"
+                onClick={() => {
+                  setSquatToggle(!squatToggle);
+                }}
+              >
+                New PR
+              </button>
+            </div>
             {squatToggle && (
               <form
+                className="new-pr-form"
                 onSubmit={(e) => {
                   e.preventDefault();
                   updateUser({ squatPR: newSquat });
@@ -173,23 +187,42 @@ export default function Home() {
                   value={newSquat}
                   onChange={handleChangeSquat}
                 />
-                <input type="submit" value="Update" />
+                <input
+                  type="submit"
+                  value="Update"
+                  className="submit-daily-weight"
+                />
               </form>
             )}
           </div>
-          <div>
+          <div className="stat-div">
             <h4>
               Deadlift PR: <span className="heavy">{deadliftPR}</span> lbs
             </h4>
-            <button
-              onClick={() => {
-                setDeadliftToggle(!deadliftToggle);
-              }}
-            >
-              New PR
-            </button>
+            <div className="progress-container">
+              <div className="progress-bar">
+                <div
+                  className="current-progress"
+                  style={{
+                    width: `${(deadliftPR / (currentWeight * 2)) * 100}%`,
+                  }}
+                >
+                  <p>{(deadliftPR / currentWeight).toFixed(2)}x</p>
+                </div>
+              </div>
+              <p>2x</p>
+              <button
+                className="new-pr-button"
+                onClick={() => {
+                  setDeadliftToggle(!deadliftToggle);
+                }}
+              >
+                New PR
+              </button>
+            </div>
             {deadliftToggle && (
               <form
+                className="new-pr-form"
                 onSubmit={(e) => {
                   e.preventDefault();
                   updateUser({ deadliftPR: newDeadlift });
@@ -201,7 +234,11 @@ export default function Home() {
                   value={newDeadlift}
                   onChange={handleChangeDeadlift}
                 />
-                <input type="submit" value="Update" />
+                <input
+                  type="submit"
+                  value="Update"
+                  className="submit-daily-weight"
+                />
               </form>
             )}
           </div>

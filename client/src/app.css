@@ -307,3 +307,12 @@ label {
   color: #e71d36;
   border-color: #e71d36;
 }
+
+.stat-div {
+  margin-top: 1.2em;
+}
+
+.top {
+  border-top: 2px dashed gray;
+  padding-top: 1em;
+}
