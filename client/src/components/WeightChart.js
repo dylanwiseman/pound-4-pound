@@ -19,14 +19,21 @@ export default function WeightChart() {
       <div className="card-header">
         <h2>Body Weight</h2>
       </div>
-      <DailyForm />
       <VictoryChart theme={VictoryTheme.material}>
         <VictoryAxis
           tickValues={[...dateArray]}
           tickFormat={[...readableDateArray]}
         />
         <VictoryAxis dependentAxis tickValues={[0, 50, 100, 150, 200, 250]} />
-        <VictoryLine data={daily} x="date" y="weight" />
+        <VictoryLine
+          data={daily}
+          x="date"
+          y="weight"
+          style={{
+            data: { stroke: "#e71d36" },
+            parent: { border: "1px solid #66999b" },
+          }}
+        />
       </VictoryChart>
     </div>
   );

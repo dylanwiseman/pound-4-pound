@@ -60,28 +60,33 @@ export default function DailyForm() {
   };
 
   return (
-    <div>
+    <div className="daily-form">
+      <h4>Update your daily weight:</h4>
       <form
         onSubmit={(e) => {
           e.preventDefault();
           addDailyStats();
         }}
       >
+        <label htmlFor="date">Date: </label>
         <input
+          id="date"
           type="date"
           value={date}
           onChange={(e) => {
             setDate(e.target.value);
           }}
         />
+        <label htmlFor="weight">Weight: </label>
         <input
+          id="weight"
           type="number"
           value={dailyWeight}
           onChange={(e) => {
             setDailyWeight(e.target.value);
           }}
         />
-        <input type="submit" />
+        <input type="submit" className="submit-daily-weight" />
       </form>
     </div>
   );
