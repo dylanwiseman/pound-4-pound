@@ -119,6 +119,7 @@ export default function Home() {
                 New PR
               </button>
             </div>
+            {!benchToggle && <div className="blank-div"></div>}
             {benchToggle && (
               <form
                 className="new-pr-form"
@@ -173,6 +174,7 @@ export default function Home() {
                 New PR
               </button>
             </div>
+            {!squatToggle && <div className="blank-div"></div>}
             {squatToggle && (
               <form
                 className="new-pr-form"
@@ -197,7 +199,8 @@ export default function Home() {
           </div>
           <div className="stat-div">
             <h4>
-              Deadlift PR: <span className="heavy">{deadliftPR}</span> lbs
+              Deadlift PR: <span className="heavy">{deadliftPR}</span> lbs /
+              goal: {Math.ceil(deadliftGoal)}
             </h4>
             <div className="progress-container">
               <div className="progress-bar">
@@ -220,6 +223,7 @@ export default function Home() {
                 New PR
               </button>
             </div>
+            {!deadliftToggle && <div className="blank-div"></div>}
             {deadliftToggle && (
               <form
                 className="new-pr-form"

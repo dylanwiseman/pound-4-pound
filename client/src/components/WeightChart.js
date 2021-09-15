@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { VictoryLine, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 import { useSelector } from "react-redux";
-import DailyForm from "./DailyForm";
 
 export default function WeightChart() {
-  const { daily } = useSelector((state) => state.user);
+  const { daily, currentWeight } = useSelector((state) => state.user);
   console.log("daily array from weightChart: ", daily);
   if (!daily) return <div>load data</div>;
 
@@ -18,13 +17,23 @@ export default function WeightChart() {
     <div className="chart-card">
       <div className="card-header">
         <h2>Body Weight</h2>
+        <h4>weight by day</h4>
       </div>
       <VictoryChart theme={VictoryTheme.material}>
         <VictoryAxis
           tickValues={[...dateArray]}
           tickFormat={[...readableDateArray]}
         />
-        <VictoryAxis dependentAxis tickValues={[0, 50, 100, 150, 200, 250]} />
+        <VictoryAxis
+          dependentAxis
+          tickValues={[
+            currentWeight - 20,
+            currentWeight - 10,
+            currentWeight,
+            currentWeight + 10,
+            currentWeight + 20,
+          ]}
+        />
         <VictoryLine
           data={daily}
           x="date"

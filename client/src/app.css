@@ -309,10 +309,16 @@ label {
 }
 
 .stat-div {
-  margin-top: 1.2em;
 }
 
 .top {
   border-top: 2px dashed gray;
   padding-top: 1em;
+  margin-top: 1em;
+}
+
+.blank-div {
+  margin: 0.2em 0;
+  padding: 0.2em;
+  height: 21px;
 }
