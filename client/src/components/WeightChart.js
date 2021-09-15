@@ -12,7 +12,7 @@ export default function WeightChart() {
 
   const readableDateArray = !daily
     ? [1, 2, 3]
-    : daily.map((day) => console.log(typeof day.date));
+    : daily.map((day) => `${day.date.getMonth() + 1}/${day.date.getDate()}`);
 
   return (
     <div className="chart-card">
@@ -24,10 +24,6 @@ export default function WeightChart() {
         <VictoryAxis
           tickValues={[...dateArray]}
           tickFormat={[...readableDateArray]}
-          // tickValues={[
-          //   1630510470000, 1633102470000, 1635780870000, 1638376470000,
-          // ]}
-          // tickFormat={["Sep", "Oct", "Nov", "Dec"]}
         />
         <VictoryAxis dependentAxis tickValues={[0, 50, 100, 150, 200, 250]} />
         <VictoryLine data={daily} x="date" y="weight" />

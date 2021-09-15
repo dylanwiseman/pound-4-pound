@@ -31,9 +31,16 @@ export default function DailyForm() {
       .map((day) => {
         return { date: new Date(day.date), weight: day.weight };
       });
-    console.log("sorted array of dates:", sortedDaily);
+    console.log(
+      "sorted array of dates:",
+      sortedDaily,
+      "last item in array: ",
+      sortedDaily[sortedDaily.length - 1]
+    );
+
     let updatedUser = {
       daily: sortedDaily,
+      currentWeight: sortedDaily[sortedDaily.length - 1].weight,
     };
     console.log("updatedUser being sent to call: ", updatedUser);
     const { data } = await axios.put("/api/user/update", {
@@ -46,6 +53,7 @@ export default function DailyForm() {
       type: "UPDATE_USER",
       value: {
         daily: sortedDaily,
+        currentWeight: sortedDaily[sortedDaily.length - 1].weight,
       },
     });
     console.log("daily after the dispatch: ", daily);
