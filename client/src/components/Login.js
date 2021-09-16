@@ -1,5 +1,6 @@
 // import React, { useState } from "react";
 import PropTypes from "prop-types";
+import "../login-signup.css";
 // import axios from "axios";
 // import { withRouter, useHistory } from "react-router";
 // import { useSelector, useDispatch } from "react-redux";
@@ -20,23 +21,33 @@ export default function Login({
   };
 
   return (
-    <div className="login-wrapper">
-      <h1>Please Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <p>Username</p>
-          <input type="text" onChange={(e) => setUserName(e.target.value)} />
-        </label>
-        <label>
-          <p>Password</p>
+    <div className="login-wrapper login-card">
+      <div className="login-header">
+        <h2>Log In:</h2>
+      </div>
+      <form onSubmit={handleSubmit} className="login-form">
+        <div className="username-div login-item">
+          <label htmlFor="loginusername" className="login-label">
+            Username:{" "}
+          </label>
+          <input
+            id="loginusername"
+            type="text"
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
+        <div className="password-div login-item">
+          <label htmlFor="loginpassword" className="login-label">
+            Password:{" "}
+          </label>
           <input
             type="password"
+            id="loginpassword"
             onChange={(e) => setPassword(e.target.value)}
           />
-        </label>
-        <div>
-          <button type="submit">Submit</button>
         </div>
+
+        <input type="submit" value="Log In" className="login-button" />
       </form>
     </div>
   );

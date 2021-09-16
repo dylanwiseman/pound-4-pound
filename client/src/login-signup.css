@@ -1,0 +1,143 @@
+.login-card {
+  flex: 1;
+  border-radius: 3px;
+  border: 1px solid black;
+  padding-bottom: 1em;
+  box-shadow: 0.1em 0.1em 0em black;
+  margin: 1em;
+}
+
+.login-header {
+  background-color: #66999b;
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+}
+.signup-header {
+  color: white;
+  background-color: #e71d36;
+  display: flex;
+  align-items: center;
+  padding: 0.5em 1em;
+}
+
+.or {
+  flex: 1;
+}
+
+.signup-card {
+  flex: 1;
+}
+
+.login-form {
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-label {
+  font-family: sporty-pro, sans-serif;
+
+  font-weight: 300;
+
+  font-style: normal;
+}
+
+input {
+  background-color: white;
+  border: 2px solid gray;
+  border-radius: 2px;
+}
+
+input:focus {
+  outline-color: #66999b;
+  outline-offset: 2px;
+  border: 2px solid #66999b;
+}
+
+.login-item {
+  margin: 0.5em 0;
+}
+
+.login-button {
+  color: #fdfffc;
+  background-color: #66999b;
+  border: solid 1px;
+  border-radius: 2px;
+  font-family: sporty-pro, sans-serif;
+
+  font-weight: 300;
+  font-size: 1.2em;
+  font-style: normal;
+  padding: 0em 1em;
+  margin-top: 1.5em;
+}
+.login-button:hover {
+  color: #fdfffc;
+  background-color: #e71d36;
+  border: solid 1px black;
+  border-radius: 2px;
+  font-family: sporty-pro, sans-serif;
+
+  font-weight: 300;
+  font-size: 1.2em;
+  font-style: normal;
+  padding: 0em 1em;
+  margin-top: 1.5em;
+  cursor: pointer;
+}
+
+.signup-form {
+  margin: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-form > div {
+  margin-top: 1em;
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.signup-form > div > label {
+  font-family: sporty-pro, sans-serif;
+
+  font-weight: 300;
+
+  font-style: normal;
+}
+
+.signup-button {
+  color: #fdfffc;
+  background-color: #e71d36;
+  border: solid 1px;
+  border-radius: 2px;
+  font-family: sporty-pro, sans-serif;
+
+  font-weight: 300;
+  font-size: 1.2em;
+  font-style: normal;
+  padding: 0em 1em;
+  margin-top: 1.5em;
+}
+
+.signup-button:hover {
+  color: #fdfffc;
+  background-color: #66999b;
+  border: solid 1px black;
+  border-radius: 2px;
+  font-family: sporty-pro, sans-serif;
+
+  font-weight: 300;
+  font-size: 1.2em;
+  font-style: normal;
+  padding: 0em 1em;
+  margin-top: 1.5em;
+  cursor: pointer;
+}

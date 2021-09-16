@@ -322,3 +322,36 @@ label {
   padding: 0.2em;
   height: 21px;
 }
+
+.no-data-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 90%;
+  color: gray;
+  padding: 0 1em;
+  margin-bottom: 10%;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+.center-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-header {
+  font-size: 1.5em;
+}
+
+.no-padding {
+  padding: 0;
+}

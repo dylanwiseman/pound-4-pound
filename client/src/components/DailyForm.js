@@ -16,27 +16,34 @@ export default function DailyForm() {
       typeof date,
       " weight input to add: ",
       typeof dailyWeight,
-      dailyWeight
+      dailyWeight,
+      "daily array: ",
+      daily
     );
-    let unixDaily = [...daily, { date: date, weight: +dailyWeight }].map(
-      (day) => {
-        return { date: new Date(day.date).getTime(), weight: day.weight };
-      }
-    );
-    console.log("unix array of dates: ", unixDaily);
-    let sortedDaily = unixDaily
-      .sort((a, b) => {
-        return a.date - b.date;
-      })
-      .map((day) => {
-        return { date: new Date(day.date), weight: day.weight };
-      });
-    console.log(
-      "sorted array of dates:",
-      sortedDaily,
-      "last item in array: ",
-      sortedDaily[sortedDaily.length - 1]
-    );
+    let sortedDaily = [];
+    if (daily) {
+      let unixDaily = [...daily, { date: date, weight: +dailyWeight }].map(
+        (day) => {
+          return { date: new Date(day.date).getTime(), weight: day.weight };
+        }
+      );
+      console.log("unix array of dates: ", unixDaily);
+      sortedDaily = unixDaily
+        .sort((a, b) => {
+          return a.date - b.date;
+        })
+        .map((day) => {
+          return { date: new Date(day.date), weight: day.weight };
+        });
+      console.log(
+        "sorted array of dates:",
+        sortedDaily,
+        "last item in array: ",
+        sortedDaily[sortedDaily.length - 1]
+      );
+    } else {
+      sortedDaily = [{ date: new Date(date), weight: +dailyWeight }];
+    }
 
     let updatedUser = {
       daily: sortedDaily,

@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 export default function WeightChart() {
   const { daily, currentWeight } = useSelector((state) => state.user);
   console.log("daily array from weightChart: ", daily);
-  if (!daily) return <div>load data</div>;
+  // if (!daily) return <div>load data</div>;
 
-  const dateArray = daily.map((day) => day.date);
+  const dateArray = !daily ? [] : daily.map((day) => day.date);
 
   const readableDateArray = !daily
-    ? [1, 2, 3]
+    ? []
     : daily.map((day) => `${day.date.getMonth() + 1}/${day.date.getDate()}`);
 
   return (
@@ -19,32 +19,48 @@ export default function WeightChart() {
         <h2>Body Weight</h2>
         <h4>weight by day</h4>
       </div>
-      <VictoryChart theme={VictoryTheme.material}>
-        <VictoryAxis
-          tickValues={[...dateArray]}
-          tickFormat={[...readableDateArray]}
-          style={{ tickLabels: { fontSize: 8, angle: 90 } }}
-        />
-        <VictoryAxis
-          dependentAxis
-          tickValues={[
-            currentWeight - 20,
-            currentWeight - 10,
-            currentWeight,
-            currentWeight + 10,
-            currentWeight + 20,
-          ]}
-        />
-        <VictoryLine
-          data={daily}
-          x="date"
-          y="weight"
-          style={{
-            data: { stroke: "#e71d36" },
-            parent: { border: "1px solid #66999b" },
-          }}
-        />
-      </VictoryChart>
+      {!daily && (
+        <div className="no-data-div">
+          <h4>
+            begin graphing your weight by adding a date and weight in the daily
+            weight form. Your current weight will be updated accordingly.
+            <br />
+            <br /> PR goals are based on your body weight and current PR. For
+            example, if you can bench 1.1x (110%) your body weight, your goal is
+            set to 1.2x (120%), and so on. <br />
+            <br /> To update a PR, click the new PR button. If you beat your
+            goal, a new goal will be calculated.
+          </h4>
+        </div>
+      )}
+      {daily && (
+        <VictoryChart theme={VictoryTheme.material}>
+          <VictoryAxis
+            tickValues={[...dateArray]}
+            tickFormat={[...readableDateArray]}
+            style={{ tickLabels: { fontSize: 8, angle: 90 } }}
+          />
+          <VictoryAxis
+            dependentAxis
+            tickValues={[
+              currentWeight - 20,
+              currentWeight - 10,
+              currentWeight,
+              currentWeight + 10,
+              currentWeight + 20,
+            ]}
+          />
+          <VictoryLine
+            data={daily}
+            x="date"
+            y="weight"
+            style={{
+              data: { stroke: "#e71d36" },
+              parent: { border: "1px solid #66999b" },
+            }}
+          />
+        </VictoryChart>
+      )}
     </div>
   );
 }

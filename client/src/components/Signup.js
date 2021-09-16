@@ -71,74 +71,93 @@ export default function Signup({
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username: </label>
-        <input
-          type="text"
-          id="username"
-          value={newUsername}
-          onChange={(e) => {
-            setNewUserName(e.target.value);
-          }}
-        />
-        <label htmlFor="password">Password: </label>
-        <input
-          type="password"
-          value={newPassword}
-          onChange={(e) => {
-            setNewPassword(e.target.value);
-          }}
-        />
-        <label htmlFor="passwordConfirm">Re-enter Password: </label>
-        <input
-          type="password"
-          value={passwordConfirm}
-          onChange={(e) => {
-            setPasswordConfirm(e.target.value);
-          }}
-        />
-        <label htmlFor="currentWeight">Current Body Weight: </label>
-        <input
-          type="text"
-          value={currentWeight}
-          onChange={(e) => {
-            setCurrentWeight(e.target.value);
-          }}
-        />
-        <label htmlFor="goalWeight">Goal Body Weight: </label>
-        <input
-          type="text"
-          value={goalWeight}
-          onChange={(e) => {
-            setGoalWeight(e.target.value);
-          }}
-        />
-        <label htmlFor="benchPR">Bench PR: </label>
-        <input
-          type="text"
-          value={benchPR}
-          onChange={(e) => {
-            setBenchPR(e.target.value);
-          }}
-        />
-        <label htmlFor="squatPR">Squat PR: </label>
-        <input
-          type="text"
-          value={squatPR}
-          onChange={(e) => {
-            setSquatPR(e.target.value);
-          }}
-        />
-        <label htmlFor="deadliftPR">Deadlift PR: </label>
-        <input
-          type="text"
-          value={deadliftPR}
-          onChange={(e) => {
-            setDeadliftPR(e.target.value);
-          }}
-        />
-        <input type="submit" />
+    <div className="login-card">
+      <div className="signup-header">
+        <h2>Sign up:</h2>
+      </div>
+      <form onSubmit={handleSubmit} className="signup-form">
+        <div>
+          <label htmlFor="username">Username: </label>
+          <input
+            type="text"
+            id="username"
+            value={newUsername}
+            onChange={(e) => {
+              setNewUserName(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password: </label>
+          <input
+            type="password"
+            value={newPassword}
+            onChange={(e) => {
+              setNewPassword(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <label htmlFor="passwordConfirm">Re-enter Password: </label>
+          <input
+            type="password"
+            value={passwordConfirm}
+            onChange={(e) => {
+              setPasswordConfirm(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <label htmlFor="currentWeight">Current Body Weight: </label>
+          <input
+            type="text"
+            value={currentWeight}
+            onChange={(e) => {
+              setCurrentWeight(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <label htmlFor="goalWeight">Goal Body Weight: </label>
+          <input
+            type="text"
+            value={goalWeight}
+            onChange={(e) => {
+              setGoalWeight(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <label htmlFor="benchPR">Bench PR: </label>
+          <input
+            type="text"
+            value={benchPR}
+            onChange={(e) => {
+              setBenchPR(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <label htmlFor="squatPR">Squat PR: </label>
+          <input
+            type="text"
+            value={squatPR}
+            onChange={(e) => {
+              setSquatPR(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <label htmlFor="deadliftPR">Deadlift PR: </label>
+          <input
+            type="text"
+            value={deadliftPR}
+            onChange={(e) => {
+              setDeadliftPR(e.target.value);
+            }}
+          />
+        </div>
+        <input type="submit" className="signup-button" />
       </form>
     </div>
   );

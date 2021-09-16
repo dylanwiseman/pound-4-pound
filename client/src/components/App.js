@@ -31,9 +31,11 @@ export default function App() {
       credentials
     );
     console.log(data.result);
-    const dateObjects = data.result.daily.map((day) => {
-      return { date: new Date(day.date), weight: day.weight };
-    });
+    const dateObjects = !data.result.daily
+      ? null
+      : data.result.daily.map((day) => {
+          return { date: new Date(day.date), weight: day.weight };
+        });
     dispatch({
       type: "SET_USER",
       value: { ...data.result, daily: dateObjects },
@@ -41,15 +43,6 @@ export default function App() {
     // update the route to reroute user
     history.push(location);
     console.log(window.history);
-    // set user stats:
-    // let { currentWeight, goalWeight, benchPR, squatPR, deadliftPR } =
-    //   data.result;
-    // await setCurrentWeight(currentWeight);
-    // await setGoalWeight(goalWeight);
-    // await setBenchPR(benchPR);
-    // await setSquatPR(squatPR);
-    // await setDeadliftPR(deadliftPR);
-    // await console.log(currentWeight);
     // set auth token:
     console.log(data);
     return data;
@@ -58,20 +51,33 @@ export default function App() {
   if (!token) {
     return (
       <>
-        <Login
-          setToken={setToken}
-          loginUser={loginUser}
-          username={username}
-          password={password}
-          setUserName={setUserName}
-          setPassword={setPassword}
-        />
-        <Signup
-          loginUser={loginUser}
-          setUserName={setUserName}
-          setPassword={setPassword}
-          setToken={setToken}
-        />
+        <div className="center-header">
+          <div className="big-header">
+            <h1 className="no-padding">
+              <span className="h1one">Pound</span>4
+              <span className="h1two">Pound</span>
+            </h1>
+          </div>
+        </div>
+        <div className="login-container">
+          <Login
+            setToken={setToken}
+            loginUser={loginUser}
+            username={username}
+            password={password}
+            setUserName={setUserName}
+            setPassword={setPassword}
+          />
+          <div>
+            <h3 className="or">OR</h3>
+          </div>
+          <Signup
+            loginUser={loginUser}
+            setUserName={setUserName}
+            setPassword={setPassword}
+            setToken={setToken}
+          />
+        </div>
       </>
     );
   }
