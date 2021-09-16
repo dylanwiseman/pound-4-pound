@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import "../leaderboard.css";
 
 export default function LeaderBoard() {
   const [userData, setUserData] = useState([]);
@@ -38,17 +39,23 @@ export default function LeaderBoard() {
   }
 
   return (
-    <div>
-      Leaderboard
-      <ol>
-        {userData.map((user, index) => {
-          return (
-            <li key={index}>
-              {user.username} , {user.strengthRating}
-            </li>
-          );
-        })}
-      </ol>
+    <div className="leaderboard-container">
+      <div className="leaderboard-card">
+        <div className="leaderboard-header">
+          <h2>Leaderboard</h2>
+        </div>
+        <ol className="leader-list">
+          {userData.map((user, index) => {
+            return (
+              <li key={index}>
+                {index + 1}.<h3 className="leader-name">{user.username}</h3>
+                <h4 className="lvl-small">lvl: </h4>
+                <h3 className="leader-level">{user.strengthRating}</h3>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
     </div>
   );
 }
