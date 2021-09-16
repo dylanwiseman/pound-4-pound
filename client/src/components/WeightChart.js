@@ -3,10 +3,24 @@ import { VictoryLine, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 import { useSelector } from "react-redux";
 
 export default function WeightChart() {
+  // const [dateArray, setDateArray] = useState([]);
+  // const [readableDateArray, setReadableDateArray] = useState([]);
   const { daily, currentWeight } = useSelector((state) => state.user);
   console.log("daily array from weightChart: ", daily);
-  // if (!daily) return <div>load data</div>;
+  if (!daily) return <div>load data</div>;
 
+  // useEffect(() => {
+  //   setDateArray(daily ? [] : daily.map((day) => day.date));
+
+  //   setReadableDateArray(
+  //     !daily
+  //       ? []
+  //       : daily.map((day) => {
+  //           day.date.setDate(day.date.getDate() + 1);
+  //           return `${day.date.getMonth() + 1}/${day.date.getDate()}`;
+  //         })
+  //   );
+  // }, [daily]);
   const dateArray = !daily ? [] : daily.map((day) => day.date);
 
   const readableDateArray = !daily
@@ -15,6 +29,8 @@ export default function WeightChart() {
         day.date.setDate(day.date.getDate() + 1);
         return `${day.date.getMonth() + 1}/${day.date.getDate()}`;
       });
+
+  console.log("the readable Array: ", readableDateArray);
 
   return (
     <div className="chart-card">

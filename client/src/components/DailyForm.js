@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function DailyForm() {
   const dispatch = useDispatch();
-  const [date, setDate] = useState(null);
+  const [date, setDate] = useState("");
   const [dailyWeight, setDailyWeight] = useState(0);
 
   const { username, daily } = useSelector((state) => state.user);
@@ -21,8 +21,8 @@ export default function DailyForm() {
       daily
     );
 
-    let newDate = new Date(new Date(date).getTime() + 86400000);
-    setDate(newDate);
+    // let newDate = new Date(new Date(date).getTime() + 86400000);
+    // setDate(newDate);
     let sortedDaily = [];
     if (daily) {
       let unixDaily = [...daily, { date: date, weight: +dailyWeight }].map(

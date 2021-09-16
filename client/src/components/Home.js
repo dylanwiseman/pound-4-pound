@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import WeightChart from "./WeightChart";
 import DailyForm from "./DailyForm";
-import { current } from "immer";
 
 export default function Home() {
   // useSelector((state) => console.log(state));
@@ -248,7 +247,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <WeightChart />
+      {currentWeight && <WeightChart />}
     </div>
   );
 }
