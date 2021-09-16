@@ -23,6 +23,7 @@ export default function WeightChart() {
         <VictoryAxis
           tickValues={[...dateArray]}
           tickFormat={[...readableDateArray]}
+          style={{ tickLabels: { fontSize: 8, angle: 90 } }}
         />
         <VictoryAxis
           dependentAxis
