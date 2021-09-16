@@ -21,6 +21,7 @@ export default function Home() {
   const [benchGoal, setBenchGoal] = useState(currentWeight);
   const [squatGoal, setSquatGoal] = useState(currentWeight);
   const [deadliftGoal, setDeadliftGoal] = useState(currentWeight);
+  const [isLoading, setIsLoading] = useState(true);
 
   async function updateUser(updatedUser) {
     console.log(
@@ -77,6 +78,7 @@ export default function Home() {
     setBenchGoal(benchMultiplyer * currentWeight);
     setSquatGoal(squatMultiplyer * currentWeight);
     setDeadliftGoal(deadliftMultiplyer * currentWeight);
+    setIsLoading(false);
   }, [currentWeight, benchPR, squatPR, deadliftPR]);
 
   return (
@@ -247,7 +249,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {currentWeight && <WeightChart />}
+      {!isLoading && <WeightChart />}
     </div>
   );
 }
