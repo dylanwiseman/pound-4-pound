@@ -43,6 +43,8 @@ app.post("/api/auth/login", async (req, res) => {
       token: "test123",
       result: result,
     });
+  } else {
+    res.status(401).send({ message: "incorrect password" });
   }
 });
 

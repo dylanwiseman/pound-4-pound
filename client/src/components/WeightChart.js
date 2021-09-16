@@ -11,7 +11,10 @@ export default function WeightChart() {
 
   const readableDateArray = !daily
     ? []
-    : daily.map((day) => `${day.date.getMonth() + 1}/${day.date.getDate()}`);
+    : daily.map((day) => {
+        day.date.setDate(day.date.getDate() + 1);
+        return `${day.date.getMonth() + 1}/${day.date.getDate()}`;
+      });
 
   return (
     <div className="chart-card">
