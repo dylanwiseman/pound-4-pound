@@ -34,6 +34,7 @@ export default function Login({
             id="loginusername"
             type="text"
             onChange={(e) => setUserName(e.target.value)}
+            required
           />
         </div>
         <div className="password-div login-item">
@@ -44,6 +45,7 @@ export default function Login({
             type="password"
             id="loginpassword"
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
 

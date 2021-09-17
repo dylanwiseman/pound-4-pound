@@ -85,6 +85,7 @@ export default function Signup({
             onChange={(e) => {
               setNewUserName(e.target.value);
             }}
+            required
           />
         </div>
         <div>
@@ -95,6 +96,7 @@ export default function Signup({
             onChange={(e) => {
               setNewPassword(e.target.value);
             }}
+            required
           />
         </div>
         <div>
@@ -105,6 +107,7 @@ export default function Signup({
             onChange={(e) => {
               setPasswordConfirm(e.target.value);
             }}
+            required
           />
         </div>
         <div>
@@ -115,6 +118,7 @@ export default function Signup({
             onChange={(e) => {
               setCurrentWeight(e.target.value);
             }}
+            required
           />
         </div>
         <div>
@@ -125,6 +129,7 @@ export default function Signup({
             onChange={(e) => {
               setGoalWeight(e.target.value);
             }}
+            required
           />
         </div>
         <div>
@@ -135,6 +140,7 @@ export default function Signup({
             onChange={(e) => {
               setBenchPR(e.target.value);
             }}
+            required
           />
         </div>
         <div>
@@ -145,6 +151,7 @@ export default function Signup({
             onChange={(e) => {
               setSquatPR(e.target.value);
             }}
+            required
           />
         </div>
         <div>
@@ -155,6 +162,7 @@ export default function Signup({
             onChange={(e) => {
               setDeadliftPR(e.target.value);
             }}
+            required
           />
         </div>
         <input type="submit" className="signup-button" />

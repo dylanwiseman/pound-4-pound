@@ -5,9 +5,11 @@ import { useSelector } from "react-redux";
 export default function WeightChart() {
   // const [dateArray, setDateArray] = useState([]);
   // const [readableDateArray, setReadableDateArray] = useState([]);
-  const { daily, currentWeight } = useSelector((state) => state.user);
+  const { daily, currentWeight, goalWeight } = useSelector(
+    (state) => state.user
+  );
   console.log("daily array from weightChart: ", daily);
-  if (!daily) return <div>load data</div>;
+  // if (!daily) return <div>load data</div>;
 
   // useEffect(() => {
   //   setDateArray(daily ? [] : daily.map((day) => day.date));
@@ -31,6 +33,12 @@ export default function WeightChart() {
       });
 
   console.log("the readable Array: ", readableDateArray);
+
+  const goalWeightLine = !daily
+    ? []
+    : daily.map((day) => {
+        return { ...day, goalWeight: goalWeight };
+      });
 
   return (
     <div className="chart-card">
@@ -76,6 +84,14 @@ export default function WeightChart() {
             style={{
               data: { stroke: "#e71d36" },
               parent: { border: "1px solid #66999b" },
+            }}
+          />
+          <VictoryLine
+            data={goalWeightLine}
+            x="date"
+            y="goalWeight"
+            style={{
+              data: { stroke: "#66999b", strokeWidth: 2, strokeDasharray: 4 },
             }}
           />
         </VictoryChart>
