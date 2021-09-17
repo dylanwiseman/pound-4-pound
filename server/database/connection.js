@@ -49,6 +49,7 @@ async function findOneUser(username) {
   }
 }
 
+//this is used to find all users for the leaderboard:
 async function findUsers() {
   const cursor = client
     .db("pound4pound")
@@ -61,6 +62,7 @@ async function findUsers() {
 
 //UPDTATE:
 
+//used to both update PRs and daily stats array:
 async function updateUser(nameOfUser, updatedUser) {
   console.log("updating: ", nameOfUser, " with: ", updatedUser);
   const result = await client

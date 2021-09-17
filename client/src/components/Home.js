@@ -80,10 +80,8 @@ export default function Home() {
       Math.floor((benchPR / currentWeight) * 10) / 10 + 0.1;
     const squatMultiplyer =
       Math.floor((squatPR / currentWeight) * 10) / 10 + 0.1;
-    console.log("squatmulitplyer: ", squatMultiplyer);
     const deadliftMultiplyer =
       Math.floor((deadliftPR / currentWeight) * 10) / 10 + 0.1;
-    console.log(benchMultiplyer);
 
     setBenchGoal(benchMultiplyer * currentWeight);
     setSquatGoal(squatMultiplyer * currentWeight);
