@@ -43,8 +43,8 @@ export default function App() {
     // update the route to reroute user
     history.push(location);
     console.log(window.history);
-    // set auth token:
-    console.log(data);
+
+    console.log("data returned from login axios call: ", data);
     return data;
   }
 
@@ -115,32 +115,3 @@ export default function App() {
     </div>
   );
 }
-
-// setCurrenWeight={setCurrentWeight}
-//           setGoalWeight={setGoalWeight}
-//           setBenchPR={setBenchPR}
-//           setSquatPR={setSquatPR}
-//           setDeadliftPR={setDeadliftPR}
-
-// const PrivateRoute = (props) => {
-//   return <Route {...props}>{props.user ? props.children : <Login />}</Route>;
-// };
-// export default App;
-
-// const [user, setUser] = useState(undefined);
-
-// const observeAuth = () => {
-//   const auth = getAuth();
-//   onAuthStateChanged(auth, (user) => {
-//     console.log("the user is being set ", user);
-//     setUser(user);
-//   });
-// };
-
-// useEffect(() => {
-//   try {
-//     observeAuth();
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }, []);

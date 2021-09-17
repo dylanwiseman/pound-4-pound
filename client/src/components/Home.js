@@ -5,12 +5,14 @@ import WeightChart from "./WeightChart";
 import DailyForm from "./DailyForm";
 
 export default function Home() {
-  // useSelector((state) => console.log(state));
   const dispatch = useDispatch();
 
-  const { currentWeight, goalWeight, benchPR, squatPR, deadliftPR, username } =
-    useSelector((state) => state.user);
+  //getting state from redux:
+  const { currentWeight, benchPR, squatPR, deadliftPR, username } = useSelector(
+    (state) => state.user
+  );
 
+  //creating local state:
   const [benchToggle, setBenchToggle] = useState(false);
   const [squatToggle, setSquatToggle] = useState(false);
   const [deadliftToggle, setDeadliftToggle] = useState(false);
@@ -23,6 +25,7 @@ export default function Home() {
   const [deadliftGoal, setDeadliftGoal] = useState(currentWeight);
   const [isLoading, setIsLoading] = useState(true);
 
+  //This function is used to update the PRs:
   async function updateUser(updatedUser) {
     console.log(
       "updating user from Homepage: ",
@@ -30,11 +33,15 @@ export default function Home() {
       "sending: ",
       updatedUser
     );
+
+    //update it in the database:
     const { data } = await axios.put("/api/user/update", {
       username: username,
       updatedUser,
     });
-    console.log(data);
+    console.log("data returned from update user axios call: ", data);
+
+    //update in redux:
     dispatch({
       type: "UPDATE_USER",
       value: {
@@ -47,6 +54,7 @@ export default function Home() {
     return data;
   }
 
+  //handle changes in the inputs:
   const handleChangeBench = (e) => {
     setNewBench(e.target.value);
   };
@@ -58,6 +66,7 @@ export default function Home() {
   };
 
   useEffect(() => {
+    //creates strength rating:
     let strengthRating = Math.ceil(
       ((parseInt(benchPR) + parseInt(squatPR) + parseInt(deadliftPR)) /
         3 /
@@ -66,6 +75,7 @@ export default function Home() {
     );
     setStrengthRating(strengthRating);
 
+    //these multiplyers are used to set the next PR goals automatically, based on weight and current pr:
     const benchMultiplyer =
       Math.floor((benchPR / currentWeight) * 10) / 10 + 0.1;
     const squatMultiplyer =

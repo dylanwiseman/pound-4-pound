@@ -7,7 +7,7 @@ export default function Signup({
   setPassword,
   setToken,
 }) {
-  //This state is used just to create the new user, it's different from the state used in App:
+  //This state is used just to create the new user, it's different from the state used in App or by Redux:
   const [newUsername, setNewUserName] = useState("");
   const [currentWeight, setCurrentWeight] = useState("");
   const [goalWeight, setGoalWeight] = useState("");
@@ -22,7 +22,7 @@ export default function Signup({
       alert("Passwords do not match");
       return;
     }
-    console.log("inside register function");
+    console.log("registering new user...");
 
     // the states are strings, we have to turn them into numbers before we send them to the database:
     let currentWeightNum = parseInt(currentWeight);
@@ -45,27 +45,26 @@ export default function Signup({
       }
     );
     console.log(
+      "sending data to axios.post/register: ",
       newUsername,
-      newPassword,
       currentWeight,
       goalWeight,
       benchPR,
       squatPR,
       deadliftPR
     );
-    console.log(data);
+    console.log("data returned from axios.post to register user: ", data);
   }
 
+  //Calls register() and sets state for username and password that we will use to login:
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("clicked");
     await register();
-    console.log(newUsername);
     await setUserName(newUsername);
-    console.log(newPassword);
     await setPassword(newPassword);
 
-    //call loginUser with the username and password we just created and set the token:
+    //call loginUser() with the username and password we just created and set the token:
     const token = await loginUser(newUsername, newPassword);
     setToken(token);
   };
@@ -170,61 +169,3 @@ export default function Signup({
     </div>
   );
 }
-
-// setUserName,
-// setPassword,
-// setBenchPR,
-// setSquatPR,
-// setDeadliftPR,
-// setGoalWeight,
-// setCurrentWeight,
-
-// import React, { useState } from "react";
-// import {
-//   getAuth,
-//   createUserWithEmailAndPassword,
-//   signInWithEmailAndPassword,
-// } from "firebase/auth";
-// import { useHistory } from "react-router-dom";
-
-//   const history = useHistory();
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [passwordConfirm, setPasswordConfirm] = useState("");
-//   const [username, setUsername] = useState("");
-//   const [currentWeight, setCurrentWeight] = useState(0);
-//   const [goalWeight, setGoalWeight] = useState(0);
-//   const [benchPR, setBenchPR] = useState(0);
-//   const [squatPR, setSquatPR] = useState(0);
-//   const [deadliftPR, setDeadliftPR] = useState(0);
-
-//   const register = async () => {
-//     try {
-//       console.log("hellow");
-//       const auth = getAuth();
-//       console.log("second log");
-//       const userCredentials = await createUserWithEmailAndPassword(
-//         auth,
-//         email,
-//         password
-//       );
-//       console.log(userCredentials);
-//     } catch (error) {
-//       alert(error.message);
-//     }
-//   };
-
-//   const login = async () => {
-//     try {
-//       const auth = getAuth();
-//       const userCredentials = await signInWithEmailAndPassword(
-//         auth,
-//         email,
-//         password
-//       );
-//       console.log(userCredentials);
-//       history.push("/home");
-//     } catch (error) {
-//       alert(error.message);
-//     }
-//   };

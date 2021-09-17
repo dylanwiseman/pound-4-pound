@@ -3,12 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
 export default function DailyForm() {
+  //using dispatch and setting local state:
   const dispatch = useDispatch();
   const [date, setDate] = useState("");
   const [dailyWeight, setDailyWeight] = useState(0);
 
+  //getting state from redux:
   const { username, daily } = useSelector((state) => state.user);
 
+  //adds the new day's data to the array and sorts the array by day:
   const addDailyStats = async () => {
     console.log(
       "date input to add: ",
@@ -21,8 +24,7 @@ export default function DailyForm() {
       daily
     );
 
-    // let newDate = new Date(new Date(date).getTime() + 86400000);
-    // setDate(newDate);
+    //adds the new day and translates all the dates to unix so we can sort them IF you already have data in the array:
     let sortedDaily = [];
     if (daily) {
       let unixDaily = [...daily, { date: date, weight: +dailyWeight }].map(
@@ -31,6 +33,8 @@ export default function DailyForm() {
         }
       );
       console.log("unix array of dates: ", unixDaily);
+
+      //turns the dates back into date objects:
       sortedDaily = unixDaily
         .sort((a, b) => {
           return a.date - b.date;
@@ -45,20 +49,26 @@ export default function DailyForm() {
         sortedDaily[sortedDaily.length - 1]
       );
     } else {
+      //if you don't have any dates recorded yet, this starts that array, since there's nothing to sort yet:
       sortedDaily = [{ date: new Date(date), weight: +dailyWeight }];
     }
 
+    //finds the most recent date in your array of dates and creates the updatedUser to update your user with the new array and new current weight:
     let updatedUser = {
       daily: sortedDaily,
       currentWeight: sortedDaily[sortedDaily.length - 1].weight,
     };
     console.log("updatedUser being sent to call: ", updatedUser);
+
+    //makes the axios call to update the user in the database:
     const { data } = await axios.put("/api/user/update", {
       username: username,
       updatedUser,
     });
     console.log("data returned from put call: ", data);
     console.log("sortedDaily after the call is sent: ", sortedDaily);
+
+    //update the user in redux:
     await dispatch({
       type: "UPDATE_USER",
       value: {

@@ -7,10 +7,11 @@ export default function LeaderBoard() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    //makes an axios request to get the user data for the leaderboard:
     const getLeaderboard = async () => {
       const { data } = await axios.get("/api/leaderboard");
-      setIsLoading(false);
 
+      //gets the strength rating for each user and puts it in an array:
       const leaders = data.map((user) => {
         let strengthRating = Math.ceil(
           ((parseInt(user.benchPR) +
@@ -20,8 +21,11 @@ export default function LeaderBoard() {
             parseInt(user.currentWeight)) *
             100
         );
+        setIsLoading(false);
         return { ...user, strengthRating };
       });
+
+      //sorts the array by strength rating and sets it to the UserData state:
       leaders.sort((a, b) => {
         return (a.strengthRating - b.strengthRating) * -1;
       });

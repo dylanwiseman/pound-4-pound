@@ -1,39 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { VictoryLine, VictoryChart, VictoryAxis, VictoryTheme } from "victory";
 import { useSelector } from "react-redux";
 
 export default function WeightChart() {
-  // const [dateArray, setDateArray] = useState([]);
-  // const [readableDateArray, setReadableDateArray] = useState([]);
+  //Using state from redux:
   const { daily, currentWeight, goalWeight } = useSelector(
     (state) => state.user
   );
   console.log("daily array from weightChart: ", daily);
-  // if (!daily) return <div>load data</div>;
 
-  // useEffect(() => {
-  //   setDateArray(daily ? [] : daily.map((day) => day.date));
-
-  //   setReadableDateArray(
-  //     !daily
-  //       ? []
-  //       : daily.map((day) => {
-  //           day.date.setDate(day.date.getDate() + 1);
-  //           return `${day.date.getMonth() + 1}/${day.date.getDate()}`;
-  //         })
-  //   );
-  // }, [daily]);
+  //creating two arrays that the graph uses to label ticks on the x-axis:
   const dateArray = !daily ? [] : daily.map((day) => day.date);
-
   const readableDateArray = !daily
     ? []
     : daily.map((day) => {
         day.date.setDate(day.date.getDate() + 1);
         return `${day.date.getMonth() + 1}/${day.date.getDate()}`;
       });
-
   console.log("the readable Array: ", readableDateArray);
 
+  //This array is used to create the goalWeight line on the graph:
   const goalWeightLine = !daily
     ? []
     : daily.map((day) => {

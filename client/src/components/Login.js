@@ -13,7 +13,7 @@ export default function Login({
   username,
   password,
 }) {
-  // Submit Handler calls loginUser and setToken from App
+  // Submit Handler calls loginUser() and setToken() from App
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = await loginUser(username, password);
