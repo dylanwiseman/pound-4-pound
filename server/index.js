@@ -23,7 +23,7 @@ app.put("/api/user/update", async (req, res) => {
   res.send("result");
 });
 
-// GET LEADERBOARD:
+// GET LEADERBOARD::
 app.get("/api/leaderboard", async (req, res) => {
   const result = await database.findUsers();
   res.send(result);
