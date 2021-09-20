@@ -34,7 +34,14 @@ export default function App() {
     const dateObjects = !data.result.daily
       ? null
       : data.result.daily.map((day) => {
-          return { date: new Date(day.date), weight: day.weight };
+          let newDate = new Date(day.date);
+          let dayPlusOne = newDate.setDate(newDate.getDate());
+          let newDate2 = new Date(dayPlusOne);
+          console.log(newDate2);
+          return {
+            date: newDate2,
+            weight: day.weight,
+          };
         });
     dispatch({
       type: "SET_USER",

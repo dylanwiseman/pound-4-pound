@@ -26,8 +26,11 @@ export default function DailyForm() {
 
     //adds the new day and translates all the dates to unix so we can sort them IF you already have data in the array:
     let sortedDaily = [];
+    let newDate = new Date(date);
+    let dayPlusOne = newDate.setDate(newDate.getDate() + 1);
+    let newDate2 = new Date(dayPlusOne);
     if (daily) {
-      let unixDaily = [...daily, { date: date, weight: +dailyWeight }].map(
+      let unixDaily = [...daily, { date: newDate2, weight: +dailyWeight }].map(
         (day) => {
           return { date: new Date(day.date).getTime(), weight: day.weight };
         }
@@ -50,7 +53,7 @@ export default function DailyForm() {
       );
     } else {
       //if you don't have any dates recorded yet, this starts that array, since there's nothing to sort yet:
-      sortedDaily = [{ date: new Date(date), weight: +dailyWeight }];
+      sortedDaily = [{ date: newDate2, weight: +dailyWeight }];
     }
 
     //finds the most recent date in your array of dates and creates the updatedUser to update your user with the new array and new current weight:
