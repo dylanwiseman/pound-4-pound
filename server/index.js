@@ -7,12 +7,15 @@ const path = require("path");
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+// app.use(express.static("public"));
 
 //For Heroku:
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/public/index.html"));
-});
+// app.get("/", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../client/public/index.html"));
+// });
+
+const buildPath = path.join(__dirname, "..", "build");
+app.use(express.static(buildPath));
 
 //Setup server port and connect to database:
 const PORT = process.env.PORT || 4004;
