@@ -14,7 +14,7 @@ app.use(express.json());
 //   res.sendFile(path.join(__dirname, "../client/public/index.html"));
 // });
 
-const buildPath = path.join(__dirname, "..", "build");
+const buildPath = path.join(__dirname, "../client/build");
 app.use(express.static(buildPath));
 
 //Setup server port and connect to database:
