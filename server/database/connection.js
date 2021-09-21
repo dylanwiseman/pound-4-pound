@@ -1,7 +1,7 @@
 // This file creates the MongoClient used to connect to the database and declares the actual CRUD functions that connect to the database
 
 const { MongoClient } = require("mongodb");
-const URI = require("./config");
+const URI = process.env.URI || require("./config");
 const client = new MongoClient(URI);
 
 async function listDatabases(client) {
