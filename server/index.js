@@ -11,7 +11,7 @@ app.use(express.static("public"));
 
 //For Heroku:
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../index.html"));
+  res.sendFile(path.join(__dirname, "../client/public/index.html"));
 });
 
 //Setup server port and connect to database:
