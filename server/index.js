@@ -87,6 +87,10 @@ app.post("/api/auth/register", async (req, res) => {
   //send back a token (stored in sessionStorage to stay logged in) and the created user to access their data
   res.send({ token: "test123", userToReturn, result });
 });
+// All other GET requests not handled before will return our React app
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
