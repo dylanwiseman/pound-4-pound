@@ -26,10 +26,7 @@ export default function App() {
     console.log("Loggin in: ", username, password);
     // need a username and password to be sent on body
     const credentials = { username: username, password: password };
-    const { data } = await axios.post(
-      "http://localhost:4004/api/auth/login",
-      credentials
-    );
+    const { data } = await axios.post("/api/auth/login", credentials);
     console.log(data.result);
     const dateObjects = !data.result.daily
       ? null

@@ -9,7 +9,7 @@ export default function LeaderBoard() {
   useEffect(() => {
     //makes an axios request to get the user data for the leaderboard:
     const getLeaderboard = async () => {
-      const { data } = await axios.get("http://localhost:4004/api/leaderboard");
+      const { data } = await axios.get("/api/leaderboard");
 
       //gets the strength rating for each user and puts it in an array:
       const leaders = data.map((user) => {
