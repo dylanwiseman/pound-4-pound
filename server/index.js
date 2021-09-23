@@ -31,6 +31,7 @@ app.put("/api/user/update", async (req, res) => {
 // GET LEADERBOARD:
 app.get("/api/leaderboard", async (req, res) => {
   const result = await database.findUsers();
+  console.log("inside server app.get leaderboard: ", result);
   res.send(result);
 });
 

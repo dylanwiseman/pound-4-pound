@@ -51,6 +51,7 @@ async function findOneUser(username) {
 
 //this is used to find all users for the leaderboard:
 async function findUsers() {
+  console.log("getting users for the leaderboard...");
   const cursor = client
     .db("pound4pound")
     .collection("users")
