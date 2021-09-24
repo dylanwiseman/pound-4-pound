@@ -35,11 +35,16 @@ export default function Home() {
     );
 
     //update it in the database:
-    const { data } = await axios.put("/api/user/update", {
-      username: username,
-      updatedUser,
-    });
-    console.log("data returned from update user axios call: ", data);
+
+    try {
+      const { data } = await axios.put("/api/user/update", {
+        username: username,
+        updatedUser,
+      });
+      console.log("data returned from update user axios call: ", data);
+    } catch (error) {
+      console.log("error from update call: ", error.message);
+    }
 
     //update in redux:
     dispatch({
@@ -51,7 +56,7 @@ export default function Home() {
       },
     });
 
-    return data;
+    // return data;
   }
 
   //handle changes in the inputs:
