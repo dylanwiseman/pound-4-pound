@@ -7,7 +7,7 @@ export default function WeightChart() {
   const { daily, currentWeight, goalWeight } = useSelector(
     (state) => state.user
   );
-  console.log("daily array from weightChart: ", daily);
+  // console.log("daily array from weightChart: ", daily);
 
   //creating two arrays that the graph uses to label ticks on the x-axis:
   const dateArray = !daily ? [] : daily.map((day) => day.date);
@@ -17,7 +17,7 @@ export default function WeightChart() {
         day.date.setDate(day.date.getDate());
         return `${day.date.getMonth() + 1}/${day.date.getDate()}`;
       });
-  console.log("the readable Array: ", readableDateArray);
+  // console.log("the readable Array: ", readableDateArray);
 
   //This array is used to create the goalWeight line on the graph:
   const goalWeightLine = !daily

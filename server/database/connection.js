@@ -67,6 +67,7 @@ async function findUsers() {
 //used to both update PRs and daily stats array:
 async function updateUser(nameOfUser, updatedUser) {
   console.log("updating: ", nameOfUser, " with: ", updatedUser);
+
   const result = await client
     .db("pound4pound")
     .collection("users")

@@ -35,7 +35,7 @@ export default function DailyForm() {
           return { date: new Date(day.date).getTime(), weight: day.weight };
         }
       );
-      console.log("unix array of dates: ", unixDaily);
+      //   console.log("unix array of dates: ", unixDaily);
 
       //turns the dates back into date objects:
       sortedDaily = unixDaily
@@ -45,12 +45,12 @@ export default function DailyForm() {
         .map((day) => {
           return { date: new Date(day.date), weight: day.weight };
         });
-      console.log(
-        "sorted array of dates:",
-        sortedDaily,
-        "last item in array: ",
-        sortedDaily[sortedDaily.length - 1]
-      );
+      //   console.log(
+      //     "sorted array of dates:",
+      //     sortedDaily,
+      //     "last item in array: ",
+      //     sortedDaily[sortedDaily.length - 1]
+      //   );
     } else {
       //if you don't have any dates recorded yet, this starts that array, since there's nothing to sort yet:
       sortedDaily = [{ date: newDate2, weight: +dailyWeight }];
@@ -61,15 +61,15 @@ export default function DailyForm() {
       daily: sortedDaily,
       currentWeight: sortedDaily[sortedDaily.length - 1].weight,
     };
-    console.log("updatedUser being sent to call: ", updatedUser);
+    // console.log("updatedUser being sent to call: ", updatedUser);
 
     //makes the axios call to update the user in the database:
     const { data } = await axios.put("/api/user/update", {
       username: username,
       updatedUser,
     });
-    console.log("data returned from put call: ", data);
-    console.log("sortedDaily after the call is sent: ", sortedDaily);
+    // console.log("data returned from put call: ", data);
+    // console.log("sortedDaily after the call is sent: ", sortedDaily);
 
     //update the user in redux:
     await dispatch({
@@ -79,7 +79,7 @@ export default function DailyForm() {
         currentWeight: sortedDaily[sortedDaily.length - 1].weight,
       },
     });
-    console.log("daily after the dispatch: ", daily);
+    // console.log("daily after the dispatch: ", daily);
   };
 
   return (

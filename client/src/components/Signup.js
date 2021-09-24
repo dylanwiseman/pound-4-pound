@@ -53,13 +53,12 @@ export default function Signup({
       squatPR,
       deadliftPR
     );
-    console.log("data returned from axios.post to register user: ", data);
+    // console.log("data returned from axios.post to register user: ", data);
   }
 
   //Calls register() and sets state for username and password that we will use to login:
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("clicked");
     await register();
     await setUserName(newUsername);
     await setPassword(newPassword);

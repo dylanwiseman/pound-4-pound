@@ -27,12 +27,12 @@ export default function Home() {
 
   //This function is used to update the PRs:
   async function updateUser(updatedUser) {
-    console.log(
-      "updating user from Homepage: ",
-      username,
-      "sending: ",
-      updatedUser
-    );
+    // console.log(
+    //   "updating user from Homepage: ",
+    //   username,
+    //   "sending: ",
+    //   updatedUser
+    // );
 
     //update it in the database:
 

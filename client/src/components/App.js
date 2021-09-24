@@ -23,18 +23,18 @@ export default function App() {
   const location = { pathname: "/home" };
 
   async function loginUser(username, password) {
-    console.log("Loggin in: ", username, password);
+    console.log("Loggin in: ", username);
     // need a username and password to be sent on body
     const credentials = { username: username, password: password };
     const { data } = await axios.post("/api/auth/login", credentials);
-    console.log(data.result);
+    // console.log(data.result);
     const dateObjects = !data.result.daily
       ? null
       : data.result.daily.map((day) => {
           let newDate = new Date(day.date);
           let dayPlusOne = newDate.setDate(newDate.getDate());
           let newDate2 = new Date(dayPlusOne);
-          console.log(newDate2);
+          // console.log(newDate2);
           return {
             date: newDate2,
             weight: day.weight,
@@ -46,9 +46,9 @@ export default function App() {
     });
     // update the route to reroute user
     history.push(location);
-    console.log(window.history);
+    // console.log(window.history);
 
-    console.log("data returned from login axios call: ", data);
+    // console.log("data returned from login axios call: ", data);
     return data;
   }
 
