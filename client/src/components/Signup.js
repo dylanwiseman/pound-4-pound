@@ -32,18 +32,15 @@ export default function Signup({
     let deadliftPRNum = parseInt(deadliftPR);
 
     //making a post request to add the user:
-    const { data } = await axios.post(
-      "http://localhost:4004/api/auth/register",
-      {
-        newUsername,
-        newPassword,
-        currentWeightNum,
-        goalWeightNum,
-        benchPRNum,
-        squatPRNum,
-        deadliftPRNum,
-      }
-    );
+    const { data } = await axios.post("/api/auth/register", {
+      newUsername,
+      newPassword,
+      currentWeightNum,
+      goalWeightNum,
+      benchPRNum,
+      squatPRNum,
+      deadliftPRNum,
+    });
     console.log(
       "sending data to axios.post/register: ",
       newUsername,
