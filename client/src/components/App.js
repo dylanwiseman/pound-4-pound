@@ -6,10 +6,11 @@ import axios from "axios";
 import Login from "./Login";
 import useToken from "./useToken";
 import { useHistory } from "react-router";
-import Logout from "./Logout";
+// import Logout from "./Logout";
 import Signup from "./Signup";
 import { useDispatch } from "react-redux";
 import "../app.css";
+import Header from "./Header";
 
 export default function App() {
   const { token, setToken } = useToken();
@@ -22,33 +23,34 @@ export default function App() {
   let history = useHistory();
   const location = { pathname: "/home" };
 
+  // This is the function to log a user in. First we'll send the login credentials to the database to check for the user and, if the password is correct, retrieve the user's data. We then put that data in the redux store so the rest of the app can use it.
   async function loginUser(username, password) {
     console.log("Loggin in: ", username);
-    // need a username and password to be sent on body
+
+    // need a username and password to be sent on body of the request:
     const credentials = { username: username, password: password };
     const { data } = await axios.post("/api/auth/login", credentials);
-    // console.log(data.result);
+
+    // the data from the call includes an array called 'daily' that has dates (as strings) and weights. We need to turn those dates into date objects:
     const dateObjects = !data.result.daily
       ? null
       : data.result.daily.map((day) => {
           let newDate = new Date(day.date);
-          let dayPlusOne = newDate.setDate(newDate.getDate());
-          let newDate2 = new Date(dayPlusOne);
-          // console.log(newDate2);
           return {
-            date: newDate2,
+            date: newDate,
             weight: day.weight,
           };
         });
+
+    //set the returned data from the call in the redux store, including the updated array of dates:
     dispatch({
       type: "SET_USER",
       value: { ...data.result, daily: dateObjects },
     });
+
     // update the route to reroute user
     history.push(location);
-    // console.log(window.history);
 
-    // console.log("data returned from login axios call: ", data);
     return data;
   }
 
@@ -88,7 +90,21 @@ export default function App() {
 
   return (
     <div className="App">
-      <header>
+      <Header username={username} />
+      <Switch>
+        <Route exact path="/home">
+          <Home />
+        </Route>
+        <Route exact path="/leaderboard">
+          <LeaderBoard />
+        </Route>
+      </Switch>
+    </div>
+  );
+}
+
+{
+  /* <header>
         <div className="left-header">
           <h1>
             <span className="h1one">Pound</span>4
@@ -107,15 +123,5 @@ export default function App() {
           </Link>
           <Logout />
         </div>
-      </header>
-      <Switch>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/leaderboard">
-          <LeaderBoard />
-        </Route>
-      </Switch>
-    </div>
-  );
+      </header> */
 }
