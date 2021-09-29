@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Home from "./Home";
 import LeaderBoard from "./LeaderBoard";
 import axios from "axios";
 import Login from "./Login";
 import useToken from "./useToken";
 import { useHistory } from "react-router";
-// import Logout from "./Logout";
 import Signup from "./Signup";
 import { useDispatch } from "react-redux";
 import "../app.css";
@@ -54,6 +53,7 @@ export default function App() {
     return data;
   }
 
+  //if the user is not logged in, we return the login and sign up components:
   if (!token) {
     return (
       <>
@@ -88,6 +88,7 @@ export default function App() {
     );
   }
 
+  //if the user is logged in, we return the rest of the app:
   return (
     <div className="App">
       <Header username={username} />
@@ -101,27 +102,4 @@ export default function App() {
       </Switch>
     </div>
   );
-}
-
-{
-  /* <header>
-        <div className="left-header">
-          <h1>
-            <span className="h1one">Pound</span>4
-            <span className="h1two">Pound</span>
-          </h1>
-          <h3 className="welcome">
-            Welcome, {username ? username : "no user"}
-          </h3>
-        </div>
-        <div className="right-header">
-          <Link to="/home" className="navlink">
-            Personal
-          </Link>
-          <Link to="/leaderboard" className="navlink">
-            LeaderBoard
-          </Link>
-          <Logout />
-        </div>
-      </header> */
 }

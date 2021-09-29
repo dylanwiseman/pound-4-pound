@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import WeightChart from "./WeightChart";
 import DailyForm from "./DailyForm";
+import ProgressContainer from "./ProgressContainer";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -27,15 +28,7 @@ export default function Home() {
 
   //This function is used to update the PRs:
   async function updateUser(updatedUser) {
-    // console.log(
-    //   "updating user from Homepage: ",
-    //   username,
-    //   "sending: ",
-    //   updatedUser
-    // );
-
     //update it in the database:
-
     try {
       const { data } = await axios.put("/api/user/update", {
         username: username,
@@ -115,27 +108,12 @@ export default function Home() {
                 Bench PR: <span className="heavy">{benchPR}</span> lbs / goal:{" "}
                 {Math.ceil(benchGoal)}
               </h4>
-              <div className="progress-container">
-                <div className="progress-bar">
-                  <div
-                    className="current-progress"
-                    style={{
-                      width: `${(benchPR / (currentWeight * 2)) * 100}%`,
-                    }}
-                  >
-                    <p>{(benchPR / currentWeight).toFixed(2)}x</p>
-                  </div>
-                </div>
-                <p>2x</p>
-                <button
-                  className="new-pr-button"
-                  onClick={() => {
-                    setBenchToggle(!benchToggle);
-                  }}
-                >
-                  New PR
-                </button>
-              </div>
+              <ProgressContainer
+                exercisePR={benchPR}
+                currentWeight={currentWeight}
+                toggle={benchToggle}
+                setToggle={setBenchToggle}
+              />
               {!benchToggle && <div className="blank-div"></div>}
               {benchToggle && (
                 <form
@@ -276,3 +254,25 @@ export default function Home() {
     </div>
   );
 }
+
+// <div className="progress-container">
+//                 <div className="progress-bar">
+//                   <div
+//                     className="current-progress"
+//                     style={{
+//                       width: `${(benchPR / (currentWeight * 2)) * 100}%`,
+//                     }}
+//                   >
+//                     <p>{(benchPR / currentWeight).toFixed(2)}x</p>
+//                   </div>
+//                 </div>
+//                 <p>2x</p>
+//                 <button
+//                   className="new-pr-button"
+//                   onClick={() => {
+//                     setBenchToggle(!benchToggle);
+//                   }}
+//                 >
+//                   New PR
+//                 </button>
+//               </div>
