@@ -121,17 +121,7 @@ export default function Home() {
                   onSubmit={(e) => {
                     e.preventDefault();
                     let newBenchNum = +newBench;
-                    console.log(
-                      "type of newbenchnum: ",
-                      typeof newBenchNum,
-                      newBenchNum
-                    );
                     setNewBench(newBenchNum);
-                    console.log(
-                      "type of newbench: ",
-                      typeof newBench,
-                      newBench
-                    );
                     updateUser({ benchPR: +newBench });
                     setBenchToggle(!benchToggle);
                   }}
@@ -154,27 +144,12 @@ export default function Home() {
                 Squat PR: <span className="heavy">{squatPR}</span> lbs / goal:{" "}
                 {Math.ceil(squatGoal)}
               </h4>
-              <div className="progress-container">
-                <div className="progress-bar">
-                  <div
-                    className="current-progress"
-                    style={{
-                      width: `${(squatPR / (currentWeight * 2)) * 100}%`,
-                    }}
-                  >
-                    <p>{(squatPR / currentWeight).toFixed(2)}x</p>
-                  </div>
-                </div>
-                <p>2x</p>
-                <button
-                  className="new-pr-button"
-                  onClick={() => {
-                    setSquatToggle(!squatToggle);
-                  }}
-                >
-                  New PR
-                </button>
-              </div>
+              <ProgressContainer
+                exercisePR={squatPR}
+                currentWeight={currentWeight}
+                toggle={squatToggle}
+                setToggle={setSquatToggle}
+              />
               {!squatToggle && <div className="blank-div"></div>}
               {squatToggle && (
                 <form
@@ -203,27 +178,12 @@ export default function Home() {
                 Deadlift PR: <span className="heavy">{deadliftPR}</span> lbs /
                 goal: {Math.ceil(deadliftGoal)}
               </h4>
-              <div className="progress-container">
-                <div className="progress-bar">
-                  <div
-                    className="current-progress"
-                    style={{
-                      width: `${(deadliftPR / (currentWeight * 2)) * 100}%`,
-                    }}
-                  >
-                    <p>{(deadliftPR / currentWeight).toFixed(2)}x</p>
-                  </div>
-                </div>
-                <p>2x</p>
-                <button
-                  className="new-pr-button"
-                  onClick={() => {
-                    setDeadliftToggle(!deadliftToggle);
-                  }}
-                >
-                  New PR
-                </button>
-              </div>
+              <ProgressContainer
+                exercisePR={deadliftPR}
+                currentWeight={currentWeight}
+                toggle={deadliftToggle}
+                setToggle={setDeadliftToggle}
+              />
               {!deadliftToggle && <div className="blank-div"></div>}
               {deadliftToggle && (
                 <form
@@ -254,25 +214,3 @@ export default function Home() {
     </div>
   );
 }
-
-// <div className="progress-container">
-//                 <div className="progress-bar">
-//                   <div
-//                     className="current-progress"
-//                     style={{
-//                       width: `${(benchPR / (currentWeight * 2)) * 100}%`,
-//                     }}
-//                   >
-//                     <p>{(benchPR / currentWeight).toFixed(2)}x</p>
-//                   </div>
-//                 </div>
-//                 <p>2x</p>
-//                 <button
-//                   className="new-pr-button"
-//                   onClick={() => {
-//                     setBenchToggle(!benchToggle);
-//                   }}
-//                 >
-//                   New PR
-//                 </button>
-//               </div>
