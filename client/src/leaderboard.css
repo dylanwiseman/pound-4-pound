@@ -54,3 +54,21 @@ li {
   color: #e71d36;
   text-shadow: -2px 2px 0 #66999b;
 }
+
+@media (max-width: 800px) {
+  .leaderboard-card {
+    max-width: 100%;
+    margin: 0;
+    font-size: 0.55em;
+  }
+  .leaderboard-container {
+    margin: 0.2em;
+    padding: 0;
+    max-width: 95%;
+    justify-content: center;
+    align-items: center;
+  }
+  .leader-list {
+    padding: 0;
+  }
+}
