@@ -13,17 +13,6 @@ export default function DailyForm() {
 
   //adds the new day's data to the array and sorts the array by day:
   const addDailyStats = async () => {
-    console.log(
-      "date input to add: ",
-      date,
-      typeof date,
-      " weight input to add: ",
-      typeof dailyWeight,
-      dailyWeight,
-      "daily array: ",
-      daily
-    );
-
     //adds the new day and translates all the dates to unix so we can sort them IF you already have data in the array:
     let sortedDaily = [];
     let newDate = new Date(date);

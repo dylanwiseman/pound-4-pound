@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
+// import axios from "axios";
 import WeightChart from "./WeightChart";
-import DailyForm from "./DailyForm";
-import ProgressContainer from "./ProgressContainer";
+// import DailyForm from "./DailyForm";
+// import ProgressContainer from "./ProgressContainer";
+import StrengthStatsCard from "./StrengthStatsCard";
 
 export default function Home() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   //getting state from redux:
   const { currentWeight, benchPR, squatPR, deadliftPR, username } = useSelector(
@@ -14,54 +15,54 @@ export default function Home() {
   );
 
   //creating local state:
-  const [benchToggle, setBenchToggle] = useState(false);
-  const [squatToggle, setSquatToggle] = useState(false);
-  const [deadliftToggle, setDeadliftToggle] = useState(false);
-  const [newBench, setNewBench] = useState(+benchPR);
-  const [newSquat, setNewSquat] = useState(+squatPR);
-  const [newDeadlift, setNewDeadlift] = useState(+deadliftPR);
+  // const [benchToggle, setBenchToggle] = useState(false);
+  // const [squatToggle, setSquatToggle] = useState(false);
+  // const [deadliftToggle, setDeadliftToggle] = useState(false);
+  // const [newBench, setNewBench] = useState(+benchPR);
+  // const [newSquat, setNewSquat] = useState(+squatPR);
+  // const [newDeadlift, setNewDeadlift] = useState(+deadliftPR);
   const [strengthRating, setStrengthRating] = useState(0);
   const [benchGoal, setBenchGoal] = useState(currentWeight);
   const [squatGoal, setSquatGoal] = useState(currentWeight);
   const [deadliftGoal, setDeadliftGoal] = useState(currentWeight);
   const [isLoading, setIsLoading] = useState(true);
 
-  //This function is used to update the PRs:
-  async function updateUser(updatedUser) {
-    //update it in the database:
-    try {
-      const { data } = await axios.put("/api/user/update", {
-        username: username,
-        updatedUser,
-      });
-      console.log("data returned from update user axios call: ", data);
-    } catch (error) {
-      console.log("error from update call: ", error.message);
-    }
+  // //This function is used to update the PRs:
+  // async function updateUser(updatedUser) {
+  //   //update it in the database:
+  //   try {
+  //     const { data } = await axios.put("/api/user/update", {
+  //       username: username,
+  //       updatedUser,
+  //     });
+  //     console.log("data returned from update user axios call: ", data);
+  //   } catch (error) {
+  //     console.log("error from update call: ", error.message);
+  //   }
 
-    //update in redux:
-    dispatch({
-      type: "UPDATE_USER",
-      value: {
-        benchPR: +newBench,
-        squatPR: +newSquat,
-        deadliftPR: +newDeadlift,
-      },
-    });
+  //   //update in redux:
+  //   dispatch({
+  //     type: "UPDATE_USER",
+  //     value: {
+  //       benchPR: +newBench,
+  //       squatPR: +newSquat,
+  //       deadliftPR: +newDeadlift,
+  //     },
+  //   });
 
-    // return data;
-  }
+  //   // return data;
+  // }
 
-  //handle changes in the inputs:
-  const handleChangeBench = (e) => {
-    setNewBench(e.target.value);
-  };
-  const handleChangeSquat = (e) => {
-    setNewSquat(e.target.value);
-  };
-  const handleChangeDeadlift = (e) => {
-    setNewDeadlift(e.target.value);
-  };
+  // //handle changes in the inputs:
+  // const handleChangeBench = (e) => {
+  //   setNewBench(e.target.value);
+  // };
+  // const handleChangeSquat = (e) => {
+  //   setNewSquat(e.target.value);
+  // };
+  // const handleChangeDeadlift = (e) => {
+  //   setNewDeadlift(e.target.value);
+  // };
 
   useEffect(() => {
     //creates strength rating:
@@ -88,9 +89,24 @@ export default function Home() {
   }, [currentWeight, benchPR, squatPR, deadliftPR]);
 
   return (
-    <div className="container">
+    <div>
       {!isLoading && (
-        <div className="stats-card">
+        <div className="container">
+          <StrengthStatsCard
+            strengthRating={strengthRating}
+            benchGoal={benchGoal}
+            squatGoal={squatGoal}
+            deadliftGoal={deadliftGoal}
+          />
+          <WeightChart />
+        </div>
+      )}
+    </div>
+  );
+}
+
+{
+  /* <div className="stats-card">
           <div className="card-header">
             <h2>Strength Stats</h2>
             <h3>
@@ -208,9 +224,5 @@ export default function Home() {
               )}
             </div>
           </div>
-        </div>
-      )}
-      {!isLoading && <WeightChart />}
-    </div>
-  );
+        </div> */
 }
