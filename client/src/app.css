@@ -117,7 +117,7 @@ h1 {
 
 .container {
   display: flex;
-  max-width: 60%;
+  max-width: 80%;
   margin: 0 auto;
   justify-content: center;
   max-height: 600px;
@@ -409,6 +409,7 @@ label {
   .container {
     max-width: 95%;
     max-height: 100%;
+    flex-direction: column;
   }
   header {
     justify-content: center;
