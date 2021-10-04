@@ -121,7 +121,7 @@ h1 {
   margin: 0 auto;
   justify-content: center;
   max-height: 600px;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .stats-card {
