@@ -1,0 +1,77 @@
+@import "helpers/variables";
+
+header {
+  justify-content: flex-start;
+  display: flex;
+  padding: 1em 8em;
+}
+
+.left-header {
+  display: flex;
+  flex-grow: 2;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+h1 {
+  font-family: sporty-pro, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  padding-right: 2em;
+
+  .h1one {
+    color: $red;
+    text-shadow: -0.1em 0.1em 0em $blue;
+  }
+
+  .h1two {
+    color: $blue;
+    text-shadow: 0.1em 0.1em 0em $red;
+  }
+}
+
+.welcome {
+  font-family: sporty-pro, sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.right-header {
+  display: flex;
+  align-items: center;
+}
+
+.navlink {
+  font-family: sporty-pro, sans-serif;
+
+  font-weight: 700;
+
+  font-style: normal;
+  text-decoration-color: #e71d36;
+  text-decoration-thickness: 2px;
+  padding: 0em 1em;
+  color: black;
+  &:hover {
+    text-decoration-color: #66999b;
+    color: #e71d36;
+  }
+}
+
+.logout {
+  color: black;
+  background-color: #fdfffc;
+  border: solid 1px;
+  border-radius: 2px;
+  font-family: sporty-pro, sans-serif;
+
+  font-weight: 300;
+
+  font-style: normal;
+  padding: 0em 1em;
+  margin-left: 4em;
+  &:hover {
+    cursor: pointer;
+    color: #e71d36;
+    border-color: #e71d36;
+  }
+}
