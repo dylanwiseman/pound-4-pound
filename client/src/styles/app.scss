@@ -1,5 +1,6 @@
 @use "helpers/variables";
 @use "helpers/extenders";
+@use "helpers/mixins";
 @use "header";
 
 * {
@@ -16,9 +17,7 @@ body {
   background-color: $blue;
   border: solid 1px;
   border-radius: 2px;
-  font-family: sporty-pro, sans-serif;
-  font-weight: 300;
-  font-style: normal;
+  @include sporty-font(300);
   padding: 0em 1em;
   margin-left: 1em;
   &:hover {
@@ -52,18 +51,12 @@ body {
 }
 
 h2 {
-  font-family: sporty-pro, sans-serif;
-  font-weight: 800;
-  font-style: normal;
+  @include sporty-font(800);
   flex-grow: 2;
 }
 
 h3 {
-  font-family: sporty-pro, sans-serif;
-
-  font-weight: 700;
-
-  font-style: normal;
+  @include sporty-font(700);
 }
 
 .lvl {
@@ -93,9 +86,7 @@ h3 {
 }
 
 h4 {
-  font-family: sporty-pro, sans-serif;
-  font-weight: 300;
-  font-style: normal;
+  @include sporty-font(300);
 }
 .heavy {
   font-weight: 700;
@@ -105,25 +96,17 @@ h4 {
 
 input[type="date"] {
   margin-right: 1em;
-  font-family: roboto-slab, serif;
-  font-weight: 400;
-  font-style: normal;
+  @include roboto-font(400);
   font-size: 0.8em;
 }
+
 input[id="weight"] {
   width: 10%;
-  font: {
-    family: roboto-slab, serif;
-    weight: 400;
-    style: normal;
-  }
+  @include roboto-font(400);
 }
+
 label {
-  font-family: roboto-slab, serif;
-
-  font-weight: 400;
-
-  font-style: normal;
+  @include roboto-font(400);
   margin-right: 0.5em;
   font-size: 0.8em;
 }
@@ -142,13 +125,13 @@ label {
   display: flex;
   border: 1px solid black;
   border-radius: 2px;
-  box-shadow: 1px 1px 0 #66999b;
+  box-shadow: 1px 1px 0 $blue;
 }
 
 .current-progress {
   height: 100%;
   width: 80%;
-  background-color: #e71d36;
+  background-color: $red;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -156,22 +139,13 @@ label {
 .progress-container > p {
   color: gray;
   margin-left: 0.3em;
-  font-family: sporty-pro, sans-serif;
-
-  font-weight: 300;
-
-  font-style: normal;
+  @include sporty-font(300);
   font-size: 0.8em;
 }
 .current-progress > p {
   color: #790f1c;
   margin-right: 0.3em;
-
-  font-family: sporty-pro, sans-serif;
-
-  font-weight: 300;
-
-  font-style: normal;
+  @include sporty-font(300);
   font-size: 0.8em;
 }
 .inner-stats-container {
@@ -186,26 +160,18 @@ label {
 }
 
 .new-pr-button {
-  color: #fdfffc;
-  background-color: #66999b;
+  color: $white;
+  background-color: $blue;
   border: solid 1px black;
   border-radius: 2px;
-  font-family: sporty-pro, sans-serif;
-
-  font-weight: 300;
-
-  font-style: normal;
+  @include sporty-font(300);
   padding: 0em 0.5em;
   margin-left: 1em;
-}
-
-.new-pr-button:hover {
-  cursor: pointer;
-  color: #e71d36;
-  border-color: #e71d36;
-}
-
-.stat-div {
+  &:hover {
+    cursor: pointer;
+    color: $red;
+    border-color: $red;
+  }
 }
 
 .top {
@@ -269,13 +235,9 @@ label {
     padding: 1em;
   }
 
-  .mobile-menu > .navlink {
-    padding: 0 0 0 0;
-    margin: 0;
-  }
-
+  .mobile-menu > .navlink,
   .mobile-menu > .welcome {
-    padding: 0;
+    padding: 0 0 0 0;
     margin: 0;
   }
 
@@ -330,9 +292,4 @@ label {
     margin: 0;
     flex-grow: 2;
   }
-  /* .leaderboard-container {
-      max-width: 95%;
-      margin: 0;
-      padding: 0;
-    } */
 }

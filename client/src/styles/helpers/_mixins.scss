@@ -1,15 +1,15 @@
-@mixin sporty-font($size) {
+@mixin sporty-font($weight) {
   font: {
     family: sporty-pro, sans-serif;
-    size: $size;
+    weight: $weight;
     style: normal;
   }
 }
 
-@mixin roboto-font($size) {
+@mixin roboto-font($weight) {
   font: {
-    family: roboto-slab, sans-serif;
-    size: $size;
+    family: roboto-slab, serif;
+    weight: $weight;
     style: normal;
   }
 }
