@@ -41,9 +41,9 @@ export default function Home() {
   }, [currentWeight, benchPR, squatPR, deadliftPR]);
 
   return (
-    <div>
+    <>
       {!isLoading && (
-        <div className="container">
+        <main className="container">
           <StrengthStatsCard
             strengthRating={strengthRating}
             benchGoal={benchGoal}
@@ -51,8 +51,8 @@ export default function Home() {
             deadliftGoal={deadliftGoal}
           />
           <WeightChart />
-        </div>
+        </main>
       )}
-    </div>
+    </>
   );
 }

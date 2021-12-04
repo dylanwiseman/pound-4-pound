@@ -57,15 +57,15 @@ export default function App() {
   if (!token) {
     return (
       <>
-        <div className="center-header">
+        <header className="center-header">
           <div className="big-header">
             <h1 className="no-padding">
               <span className="h1one">Pound</span>4
               <span className="h1two">Pound</span>
             </h1>
           </div>
-        </div>
-        <div className="login-container">
+        </header>
+        <main className="login-container">
           <Login
             setToken={setToken}
             loginUser={loginUser}
@@ -83,14 +83,14 @@ export default function App() {
             setPassword={setPassword}
             setToken={setToken}
           />
-        </div>
+        </main>
       </>
     );
   }
 
   //if the user is logged in, we return the rest of the app:
   return (
-    <div className="App">
+    <>
       <Header username={username} />
       <Switch>
         <Route exact path="/home">
@@ -100,6 +100,6 @@ export default function App() {
           <LeaderBoard />
         </Route>
       </Switch>
-    </div>
+    </>
   );
 }

@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import Logout from "./Logout";
 import { Link } from "react-router-dom";
+import MobileMenu from "./MobileMenu";
 
 export default function Header({ username }) {
   const [toggle, setToggle] = useState(false);
+  const handleToggle = () => {
+    setToggle(!toggle);
+  };
 
   return (
     <div>
@@ -16,16 +20,7 @@ export default function Header({ username }) {
           <h3 className="welcome">
             Welcome, {username ? username : "no user"}
           </h3>
-          <div
-            className="mobile-menu-icon"
-            onClick={() => {
-              setToggle(!toggle);
-            }}
-          >
-            <div className="menu-piece"></div>
-            <div className="menu-piece"></div>
-            <div className="menu-piece"></div>
-          </div>
+          <MobileMenu setToggle={handleToggle} />
         </div>
         <div className="right-header">
           <Link to="/home" className="navlink">
@@ -37,6 +32,7 @@ export default function Header({ username }) {
           <Logout />
         </div>
 
+        {/* mobile menu: */}
         {toggle && (
           <div className="mobile-menu">
             <h3 className="welcome">

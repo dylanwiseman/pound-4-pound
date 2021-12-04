@@ -11,23 +11,20 @@ body {
 }
 
 .submit-daily-weight {
-  color: #fdfffc;
-  background-color: #66999b;
+  color: $white;
+  background-color: $blue;
   border: solid 1px;
   border-radius: 2px;
   font-family: sporty-pro, sans-serif;
-
   font-weight: 300;
-
   font-style: normal;
   padding: 0em 1em;
   margin-left: 1em;
-}
-
-.submit-daily-weight:hover {
-  cursor: pointer;
-  color: #e71d36;
-  border-color: #e71d36;
+  &:hover {
+    cursor: pointer;
+    color: $red;
+    border-color: $red;
+  }
 }
 
 /* BODY */
@@ -68,9 +65,7 @@ body {
 
 h2 {
   font-family: sporty-pro, sans-serif;
-
   font-weight: 800;
-
   font-style: normal;
   flex-grow: 2;
 }
@@ -88,7 +83,7 @@ h3 {
 }
 
 .ratingColor {
-  color: #e71d36;
+  color: $red;
   text-shadow: 0.1em 0.1em 0em black;
 }
 
@@ -111,33 +106,29 @@ h3 {
 
 h4 {
   font-family: sporty-pro, sans-serif;
-
   font-weight: 300;
-
   font-style: normal;
 }
 .heavy {
   font-weight: 700;
   font-size: 2em;
-  text-shadow: 1px 1px 0 #66999b;
+  text-shadow: 1px 1px 0 $blue;
 }
 
 input[type="date"] {
   margin-right: 1em;
   font-family: roboto-slab, serif;
-
   font-weight: 400;
-
   font-style: normal;
   font-size: 0.8em;
 }
 input[id="weight"] {
   width: 10%;
-  font-family: roboto-slab, serif;
-
-  font-weight: 400;
-
-  font-style: normal;
+  font: {
+    family: roboto-slab, serif;
+    weight: 400;
+    style: normal;
+  }
 }
 label {
   font-family: roboto-slab, serif;
