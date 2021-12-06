@@ -1,5 +1,5 @@
-@use "helpers/variables";
-@use "helpers/mixins";
+@import "helpers/variables";
+@import "helpers/mixins";
 
 header {
   justify-content: flex-start;
