@@ -53,13 +53,13 @@ h1 #h1two {
   text-shadow: 0.1em 0.1em 0em #e71d36;
 }
 
-.welcome {
+#welcome {
   font-family: sporty-pro, sans-serif;
   font-weight: 700;
   font-style: normal;
 }
 
-.right-header {
+#right-header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

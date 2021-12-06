@@ -14,15 +14,14 @@ export default function Header({ username }) {
       <header>
         <div className="left-header">
           <h1>
-            <span className="h1one">Pound</span>4
-            <span className="h1two">Pound</span>
+            <span id="h1one">Pound</span>4<span id="h1two">Pound</span>
           </h1>
           <h3 className="welcome">
             Welcome, {username ? username : "no user"}
           </h3>
           <MobileMenu setToggle={handleToggle} />
         </div>
-        <div className="right-header">
+        <div id="right-header">
           <Link to="/home" className="navlink">
             Personal
           </Link>
