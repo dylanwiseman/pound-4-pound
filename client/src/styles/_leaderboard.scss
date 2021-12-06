@@ -1,10 +1,9 @@
+@import "helpers/variables";
+@import "helpers/extenders";
+@import "helpers/mixins";
+
 .leaderboard-card {
-  flex: 1;
-  border-radius: 3px;
-  border: 1px solid black;
-  padding-bottom: 1em;
-  box-shadow: 0.1em 0.1em 0em black, 2px 2px 0 #e71d36, 4px 4px 0 #66999b;
-  margin: 1em;
+  @extend %card-base;
 }
 
 .leaderboard-header {
@@ -30,11 +29,7 @@
 li {
   display: flex;
   align-items: baseline;
-  font-family: sporty-pro, sans-serif;
-
-  font-weight: 700;
-
-  font-style: normal;
+  @include sporty-font(700);
   font-size: 2em;
 }
 
@@ -43,14 +38,14 @@ li {
   font-weight: 300;
 }
 .leader-name {
-  color: #66999b;
+  color: $blue;
   flex-grow: 2;
-  text-shadow: 2px 2px 0 #e71d36;
+  text-shadow: 2px 2px 0 $red;
 }
 
 .leader-level {
-  color: #e71d36;
-  text-shadow: -2px 2px 0 #66999b;
+  color: $red;
+  text-shadow: -2px 2px 0 $blue;
 }
 
 @media (max-width: 800px) {

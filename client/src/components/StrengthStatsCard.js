@@ -64,7 +64,7 @@ export default function StrengthStatsCard({
   };
 
   return (
-    <div className="stats-card">
+    <div id="stats-card">
       <div className="card-header">
         <h2>Strength Stats</h2>
         <h3>

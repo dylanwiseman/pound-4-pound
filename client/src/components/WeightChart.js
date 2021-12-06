@@ -27,7 +27,7 @@ export default function WeightChart() {
       });
 
   return (
-    <div className="chart-card">
+    <div id="chart-card">
       <div className="card-header">
         <h2>Body Weight</h2>
         <h4>weight by day</h4>

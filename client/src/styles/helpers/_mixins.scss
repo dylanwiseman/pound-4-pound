@@ -14,7 +14,7 @@
   }
 }
 
-@mixin button($color, $bg-color, $hover-color: $red) {
+@mixin button($color, $bg-color, $hover-color: $red, $padding: 0em 1em) {
   color: $color;
   background-color: $bg-color;
   border: solid 1px;
