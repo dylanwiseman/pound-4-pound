@@ -43,12 +43,12 @@ h1 {
   padding-right: 2em;
 }
 
-h1 .h1one {
+h1 #h1one {
   color: #e71d36;
   text-shadow: -0.1em 0.1em 0em #66999b;
 }
 
-h1 .h1two {
+h1 #h1two {
   color: #66999b;
   text-shadow: 0.1em 0.1em 0em #e71d36;
 }
@@ -85,7 +85,7 @@ h1 .h1two {
   color: #e71d36;
 }
 
-.logout {
+#logout {
   color: black;
   background-color: #fdfffc;
   border: solid 1px;
@@ -97,7 +97,7 @@ h1 .h1two {
   margin-left: 4em;
 }
 
-.logout:hover {
+#logout:hover {
   cursor: pointer;
   color: #e71d36;
   border-color: #e71d36;

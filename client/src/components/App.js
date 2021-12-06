@@ -60,8 +60,7 @@ export default function App() {
         <header className="center-header">
           <div className="big-header">
             <h1 className="no-padding">
-              <span className="h1one">Pound</span>4
-              <span className="h1two">Pound</span>
+              <span id="h1one">Pound</span>4<span id="h1two">Pound</span>
             </h1>
           </div>
         </header>
