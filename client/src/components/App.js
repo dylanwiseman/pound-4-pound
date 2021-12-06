@@ -8,7 +8,7 @@ import useToken from "./useToken";
 import { useHistory } from "react-router";
 import Signup from "./Signup";
 import { useDispatch } from "react-redux";
-import "../app.css";
+import "../styles/app.css";
 import Header from "./Header";
 
 export default function App() {
