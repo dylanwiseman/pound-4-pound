@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "../leaderboard.css";
+// import "../leaderboard.css";
 
 export default function LeaderBoard() {
   const [userData, setUserData] = useState([]);
