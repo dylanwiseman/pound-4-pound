@@ -1,5 +1,6 @@
 .leaderboard-card, #stats-card,
-#chart-card {
+#chart-card,
+#daily-card {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -9,6 +10,7 @@
   -webkit-box-shadow: 0.1em 0.1em 0em black;
           box-shadow: 0.1em 0.1em 0em black;
   margin: 1em;
+  min-width: 35%;
 }
 
 header {
@@ -53,7 +55,7 @@ h1 #h1two {
   text-shadow: 0.1em 0.1em 0em #e71d36;
 }
 
-#welcome {
+.welcome {
   font-family: sporty-pro, sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -104,7 +106,8 @@ h1 #h1two {
 }
 
 .leaderboard-card, #stats-card,
-#chart-card {
+#chart-card,
+#daily-card {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -114,6 +117,7 @@ h1 #h1two {
   -webkit-box-shadow: 0.1em 0.1em 0em black;
           box-shadow: 0.1em 0.1em 0em black;
   margin: 1em;
+  min-width: 35%;
 }
 
 .leaderboard-header {
@@ -395,6 +399,60 @@ body {
   background-color: #fdfffc;
 }
 
+/* BODY */
+.daily-form {
+  padding: 1em;
+  background-color: lightgray;
+  border-radius: 2px;
+}
+
+.daily-form form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-top: 1em;
+}
+
+.daily-form form div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+input[type="date"] {
+  margin-right: 1em;
+  font-family: roboto-slab, serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.8em;
+}
+
+input[id="weight"] {
+  width: 10%;
+  font-family: roboto-slab, serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+label {
+  font-family: roboto-slab, serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-right: 0.5em;
+  font-size: 0.8em;
+}
+
 .submit-daily-weight {
   color: #fdfffc;
   background-color: #66999b;
@@ -413,7 +471,6 @@ body {
   border-color: #e71d36;
 }
 
-/* BODY */
 .container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -428,6 +485,8 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .card-header {
@@ -465,22 +524,6 @@ h3 {
   text-shadow: 0.1em 0.1em 0em black;
 }
 
-.daily-form {
-  padding: 1em;
-  background-color: lightgray;
-  border-radius: 2px;
-}
-
-.daily-form > form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding-top: 1em;
-}
-
 .VictoryContainer {
   height: 80% !important;
   width: 100% !important;
@@ -497,29 +540,6 @@ h4 {
   font-weight: 700;
   font-size: 2em;
   text-shadow: 1px 1px 0 #66999b;
-}
-
-input[type="date"] {
-  margin-right: 1em;
-  font-family: roboto-slab, serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 0.8em;
-}
-
-input[id="weight"] {
-  width: 10%;
-  font-family: roboto-slab, serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-label {
-  font-family: roboto-slab, serif;
-  font-weight: 400;
-  font-style: normal;
-  margin-right: 0.5em;
-  font-size: 0.8em;
 }
 
 .progress-container {

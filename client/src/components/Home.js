@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import WeightChart from "./WeightChart";
 import StrengthStatsCard from "./StrengthStatsCard";
+import DailyInput from "./DailyInput";
 
 export default function Home() {
   //getting state from redux:
@@ -44,6 +45,7 @@ export default function Home() {
     <>
       {!isLoading && (
         <main className="container">
+          <DailyInput />
           <StrengthStatsCard
             strengthRating={strengthRating}
             benchGoal={benchGoal}

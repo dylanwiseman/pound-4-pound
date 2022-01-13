@@ -4,6 +4,7 @@
 @import "header";
 @import "leaderboard";
 @import "login-signup";
+@import "dailyForm";
 
 * {
   margin: 0;
@@ -14,12 +15,42 @@ body {
   background-color: $white;
 }
 
+/* BODY */
+
+// Form:
+.daily-form {
+  padding: 1em;
+  background-color: lightgray;
+  border-radius: 2px;
+  form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 1em;
+    div {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}
+input[type="date"] {
+  margin-right: 1em;
+  @include roboto-font(400);
+  font-size: 0.8em;
+}
+input[id="weight"] {
+  width: 10%;
+  @include roboto-font(400);
+}
+label {
+  @include roboto-font(400);
+  margin-right: 0.5em;
+  font-size: 0.8em;
+}
 .submit-daily-weight {
   @include button($white, $blue);
   margin-left: 1em;
 }
-
-/* BODY */
 
 .container {
   display: flex;
@@ -28,10 +59,12 @@ body {
   justify-content: center;
   max-height: 600px;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 #stats-card,
-#chart-card {
+#chart-card,
+#daily-card {
   @extend %card-base;
 }
 
@@ -60,17 +93,6 @@ h3 {
   text-shadow: 0.1em 0.1em 0em black;
 }
 
-.daily-form {
-  padding: 1em;
-  background-color: lightgray;
-  border-radius: 2px;
-}
-.daily-form > form {
-  display: flex;
-  align-items: center;
-  padding-top: 1em;
-}
-
 .VictoryContainer {
   height: 80% !important;
   width: 100% !important;
@@ -84,23 +106,6 @@ h4 {
   font-weight: 700;
   font-size: 2em;
   text-shadow: 1px 1px 0 $blue;
-}
-
-input[type="date"] {
-  margin-right: 1em;
-  @include roboto-font(400);
-  font-size: 0.8em;
-}
-
-input[id="weight"] {
-  width: 10%;
-  @include roboto-font(400);
-}
-
-label {
-  @include roboto-font(400);
-  margin-right: 0.5em;
-  font-size: 0.8em;
 }
 
 .progress-container {

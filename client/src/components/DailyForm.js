@@ -7,6 +7,8 @@ export default function DailyForm() {
   const dispatch = useDispatch();
   const [date, setDate] = useState("");
   const [dailyWeight, setDailyWeight] = useState(0);
+  const [protein, setProtein] = useState(0);
+  const [calories, setCalories] = useState(0);
 
   //getting state from redux:
   const { username, daily } = useSelector((state) => state.user);
@@ -35,7 +37,14 @@ export default function DailyForm() {
         });
     } else {
       //if you don't have any dates recorded yet, this starts that array, since there's nothing to sort yet:
-      sortedDaily = [{ date: newDate2, weight: +dailyWeight }];
+      sortedDaily = [
+        {
+          date: newDate2,
+          weight: +dailyWeight,
+          protein: +protein,
+          calories: +calories,
+        },
+      ];
     }
 
     //finds the most recent date in your array of dates and creates the updatedUser to update your user with the new array and new current weight:
@@ -69,24 +78,51 @@ export default function DailyForm() {
           addDailyStats();
         }}
       >
-        <label htmlFor="date">Date: </label>
-        <input
-          id="date"
-          type="date"
-          value={date}
-          onChange={(e) => {
-            setDate(e.target.value);
-          }}
-        />
-        <label htmlFor="weight">Weight: </label>
-        <input
-          id="weight"
-          type="number"
-          value={dailyWeight}
-          onChange={(e) => {
-            setDailyWeight(e.target.value);
-          }}
-        />
+        <div>
+          <label htmlFor="date">Date: </label>
+          <input
+            id="date"
+            type="date"
+            value={date}
+            onChange={(e) => {
+              setDate(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <label htmlFor="weight">Weight: </label>
+          <input
+            id="weight"
+            type="number"
+            value={dailyWeight}
+            onChange={(e) => {
+              setDailyWeight(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <label htmlFor="protein">Protein: </label>
+          <input
+            id="protein"
+            type="number"
+            value={protein}
+            onChange={(e) => {
+              setProtein(e.target.value);
+            }}
+          />
+        </div>
+        <div>
+          <label htmlFor="calories">Calories: </label>
+          <input
+            id="calories"
+            type="number"
+            value={calories}
+            onChange={(e) => {
+              setCalories(e.target.value);
+            }}
+          />
+        </div>
+
         <input type="submit" className="submit-daily-weight" />
       </form>
     </div>
